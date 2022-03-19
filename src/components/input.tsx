@@ -14,9 +14,11 @@ const setOfValidCharacter = new Set(listOfNumber.concat(["."]));
 export default function ValidatedInput({
   externalValue,
   setExternalValue,
+  setStateOfChangingDtW,
 }: {
   externalValue: inputConnectedVariable;
   setExternalValue: (arg0: inputConnectedVariable) => void;
+  setStateOfChangingDtW: () => void;
 }) {
   function handleChange(e: any) {
     let newValue = e.target.value;
@@ -41,6 +43,7 @@ export default function ValidatedInput({
     }
 
     if (inputValid) {
+      setStateOfChangingDtW();
       if (newValue.length > 0) {
         console.log(newValue);
         setExternalValue(parseFloat(newValue));
