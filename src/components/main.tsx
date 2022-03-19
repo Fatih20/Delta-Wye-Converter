@@ -24,21 +24,14 @@ const FieldContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 0.5em;
-  padding: 20% 0 0 0;
+  /* padding: 20% 0 0 0; */
   position: relative;
 
   /* border: solid 1px white; */
 `;
 
-const DeltaInputContainer = styled.div`
+const InputContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-    ". ra ra ."
-    "rb rb rc rc"
-    ". . . .";
-
   height: 100%;
   justify-items: center;
   position: absolute;
@@ -49,6 +42,17 @@ const DeltaInputContainer = styled.div`
     align-self: center;
     width: 50px;
   }
+`;
+
+const DeltaInputContainer = styled(InputContainer)`
+  grid-template-columns: 12.5% 1fr 1fr 1fr 12.5%;
+  grid-template-rows: 1fr 20% 1fr 1fr 33%;
+  grid-template-areas:
+    ". . ra . ."
+    ". . . . ."
+    ". rb . rc ."
+    ". rb . rc ."
+    ". . . . .";
 
   & input:nth-child(1) {
     grid-area: ra;
@@ -65,27 +69,15 @@ const DeltaInputContainer = styled.div`
   /* border: solid 1px white; */
 `;
 
-const WyeInputContainer = styled.div`
-  display: grid;
+const WyeInputContainer = styled(InputContainer)`
   grid-template-columns: 16% 1fr 1fr 1fr 16%;
-  grid-template-rows: 16% 1fr 16% 1fr 20%;
+  grid-template-rows: 10% 1fr 26% 1fr 16%;
   grid-template-areas:
     ". . . . ."
     ". r1 . r2 ."
     ". . . . ."
     ". . r3 . ."
     ". . . . .";
-
-  height: 100%;
-  justify-items: center;
-  position: absolute;
-  width: 100%;
-  z-index: 10;
-
-  & input {
-    align-self: center;
-    width: 50px;
-  }
 
   & input:nth-child(1) {
     grid-area: r1;
