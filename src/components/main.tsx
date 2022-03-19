@@ -12,6 +12,17 @@ import {
 const Main = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 1em;
+`;
+
+const FieldContainer = styled.div`
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+
+  /* border: solid 1px white; */
 `;
 
 const Spacer = styled.div`
@@ -51,37 +62,41 @@ export default function MainConversion() {
   );
   return (
     <Main>
-      <ValidatedInput
-        externalValue={raValue}
-        setExternalValue={setRaValue}
-        setStateOfChangingDtW={() => setConvertingDtW(true)}
-      />
-      <ValidatedInput
-        externalValue={rbValue}
-        setExternalValue={setRbValue}
-        setStateOfChangingDtW={() => setConvertingDtW(true)}
-      />
-      <ValidatedInput
-        externalValue={rcValue}
-        setExternalValue={setRcValue}
-        setStateOfChangingDtW={() => setConvertingDtW(true)}
-      />
+      <FieldContainer>
+        <ValidatedInput
+          externalValue={raValue}
+          setExternalValue={setRaValue}
+          setStateOfChangingDtW={() => setConvertingDtW(true)}
+        />
+        <ValidatedInput
+          externalValue={rbValue}
+          setExternalValue={setRbValue}
+          setStateOfChangingDtW={() => setConvertingDtW(true)}
+        />
+        <ValidatedInput
+          externalValue={rcValue}
+          setExternalValue={setRcValue}
+          setStateOfChangingDtW={() => setConvertingDtW(true)}
+        />
+      </FieldContainer>
       <Spacer />
-      <ValidatedInput
-        externalValue={r1Value}
-        setExternalValue={setR1Value}
-        setStateOfChangingDtW={() => setConvertingDtW(false)}
-      />
-      <ValidatedInput
-        externalValue={r2Value}
-        setExternalValue={setR2Value}
-        setStateOfChangingDtW={() => setConvertingDtW(false)}
-      />
-      <ValidatedInput
-        externalValue={r3Value}
-        setExternalValue={setR3Value}
-        setStateOfChangingDtW={() => setConvertingDtW(false)}
-      />
+      <FieldContainer>
+        <ValidatedInput
+          externalValue={r1Value}
+          setExternalValue={setR1Value}
+          setStateOfChangingDtW={() => setConvertingDtW(false)}
+        />
+        <ValidatedInput
+          externalValue={r2Value}
+          setExternalValue={setR2Value}
+          setStateOfChangingDtW={() => setConvertingDtW(false)}
+        />
+        <ValidatedInput
+          externalValue={r3Value}
+          setExternalValue={setR3Value}
+          setStateOfChangingDtW={() => setConvertingDtW(false)}
+        />
+      </FieldContainer>
     </Main>
   );
 }

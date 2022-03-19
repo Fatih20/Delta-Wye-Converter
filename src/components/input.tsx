@@ -1,5 +1,15 @@
 import { useState } from "react";
 import { inputConnectedVariable } from "../utilities/types";
+import styled from "styled-components";
+
+const StyledInput = styled.input`
+  border: solid 2px #333333;
+  border-radius: 4px;
+  background-color: #333333;
+  color: #fafafa;
+  filter: drop-shadow(0 3px 5px #0000007a);
+  padding: 0.4em;
+`;
 
 function countInArray(array: string[], checkedValue: string) {
   return array.reduce(
@@ -53,5 +63,7 @@ export default function ValidatedInput({
     }
   }
 
-  return <input type="number" value={externalValue} onChange={handleChange} />;
+  return (
+    <StyledInput type="number" value={externalValue} onChange={handleChange} />
+  );
 }
