@@ -40,7 +40,8 @@ const InputContainer = styled.div`
 
   & input {
     align-self: center;
-    width: 50px;
+    width: 100%;
+    height: 2.25em;
   }
 `;
 
