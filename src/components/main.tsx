@@ -13,9 +13,19 @@ import {
 } from "../utilities/conversionLogic";
 
 const Main = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   padding: 0 1em;
+
+  @media (min-width: 900px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "delta wye";
+    grid-column-gap: 50px;
+    justify-items: center;
+  }
 `;
 
 const FieldContainer = styled.div`
@@ -24,8 +34,12 @@ const FieldContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 0.5em;
-  /* padding: 20% 0 0 0; */
   position: relative;
+  width: min(100%, 450px);
+
+  @media (min-width: 900px) {
+    width: min(100%, 600px);
+  }
 
   /* border: solid 1px white; */
 `;
@@ -40,8 +54,13 @@ const InputContainer = styled.div`
 
   & input {
     align-self: center;
-    width: 100%;
+    width: min(100%, 200px);
     height: 2.25em;
+
+    /* @media (min-width: 600px) {
+      height: 3.5em;
+      font-size: 1em;
+    } */
   }
 `;
 
@@ -72,7 +91,7 @@ const DeltaInputContainer = styled(InputContainer)`
 
 const WyeInputContainer = styled(InputContainer)`
   grid-template-columns: 16% 1fr 1fr 1fr 16%;
-  grid-template-rows: 10% 1fr 26% 1fr 16%;
+  grid-template-rows: 6% 1fr 20% 1fr 20%;
   grid-template-areas:
     ". . . . ."
     ". r1 . r2 ."
@@ -93,7 +112,17 @@ const WyeInputContainer = styled(InputContainer)`
   }
 `;
 
-const DeltaFieldContainer = styled(FieldContainer)``;
+const DeltaFieldContainer = styled(FieldContainer)`
+  @media (min-width: 900px) {
+    grid-area: delta;
+  }
+`;
+
+const WyeFieldContainer = styled(FieldContainer)`
+  @media (min-width: 900px) {
+    grid-area: wye;
+  }
+`;
 
 const Spacer = styled.div`
   margin: 20px 0 20px 0;
@@ -167,7 +196,7 @@ export default function MainConversion() {
         </DeltaInputContainer>
       </DeltaFieldContainer>
       <Spacer />
-      <FieldContainer>
+      <WyeFieldContainer>
         <SVGContainer>
           <img src={wyeImage} alt="3 resistors arranged in wye" />
         </SVGContainer>
@@ -188,7 +217,7 @@ export default function MainConversion() {
             setStateOfChangingDtW={() => setConvertingDtW(false)}
           />
         </WyeInputContainer>
-      </FieldContainer>
+      </WyeFieldContainer>
     </Main>
   );
 }
