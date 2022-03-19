@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { inputConnectedVariable } from "../utilities/types";
 import ValidatedInput from "./input";
 
+import deltaImage from "../images/DeltaCompressed.svg";
+import wyeImage from "../images/WyeCompressed.svg";
+
 import {
   deltaToWyeConverter,
   wyeToDeltaConverter,
@@ -17,16 +20,40 @@ const Main = styled.div`
 
 const FieldContainer = styled.div`
   /* align-items: center; */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5em;
 
+  & input {
+    position: absolute;
+  }
+
   /* border: solid 1px white; */
+`;
+
+const DeltaFieldContainer = styled(FieldContainer)`
+  & input {
+    top: 0;
+    left: 30%;
+  }
 `;
 
 const Spacer = styled.div`
   margin: 20px 0 20px 0;
+`;
+
+const SVGContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  & * {
+    width: 100%;
+  }
+  /* border: solid 1px white; */
 `;
 
 export default function MainConversion() {
@@ -62,7 +89,10 @@ export default function MainConversion() {
   );
   return (
     <Main>
-      <FieldContainer>
+      <DeltaFieldContainer>
+        <SVGContainer>
+          <img src={deltaImage} alt="3 resistors arranged in delta" />
+        </SVGContainer>
         <ValidatedInput
           externalValue={raValue}
           setExternalValue={setRaValue}
@@ -78,9 +108,10 @@ export default function MainConversion() {
           setExternalValue={setRcValue}
           setStateOfChangingDtW={() => setConvertingDtW(true)}
         />
-      </FieldContainer>
+      </DeltaFieldContainer>
       <Spacer />
       <FieldContainer>
+        <img src={wyeImage} alt="3 resistors arranged in wye" />
         <ValidatedInput
           externalValue={r1Value}
           setExternalValue={setR1Value}
