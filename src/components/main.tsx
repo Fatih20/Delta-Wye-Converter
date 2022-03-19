@@ -20,25 +20,87 @@ const Main = styled.div`
 
 const FieldContainer = styled.div`
   /* align-items: center; */
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5em;
+  padding: 20% 0 0 0;
+  position: relative;
+
+  /* border: solid 1px white; */
+`;
+
+const DeltaInputContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    ". ra ra ."
+    "rb rb rc rc"
+    ". . . .";
+
+  height: 100%;
+  justify-items: center;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
 
   & input {
-    position: absolute;
+    align-self: center;
+    width: 50px;
+  }
+
+  & input:nth-child(1) {
+    grid-area: ra;
+  }
+
+  & input:nth-child(2) {
+    grid-area: rb;
+  }
+
+  & input:nth-child(3) {
+    grid-area: rc;
   }
 
   /* border: solid 1px white; */
 `;
 
-const DeltaFieldContainer = styled(FieldContainer)`
+const WyeInputContainer = styled.div`
+  display: grid;
+  grid-template-columns: 16% 1fr 1fr 1fr 16%;
+  grid-template-rows: 16% 1fr 16% 1fr 20%;
+  grid-template-areas:
+    ". . . . ."
+    ". r1 . r2 ."
+    ". . . . ."
+    ". . r3 . ."
+    ". . . . .";
+
+  height: 100%;
+  justify-items: center;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+
   & input {
-    top: 0;
-    left: 30%;
+    align-self: center;
+    width: 50px;
+  }
+
+  & input:nth-child(1) {
+    grid-area: r1;
+  }
+
+  & input:nth-child(2) {
+    grid-area: r2;
+  }
+
+  & input:nth-child(3) {
+    grid-area: r3;
   }
 `;
+
+const DeltaFieldContainer = styled(FieldContainer)``;
 
 const Spacer = styled.div`
   margin: 20px 0 20px 0;
@@ -93,40 +155,46 @@ export default function MainConversion() {
         <SVGContainer>
           <img src={deltaImage} alt="3 resistors arranged in delta" />
         </SVGContainer>
-        <ValidatedInput
-          externalValue={raValue}
-          setExternalValue={setRaValue}
-          setStateOfChangingDtW={() => setConvertingDtW(true)}
-        />
-        <ValidatedInput
-          externalValue={rbValue}
-          setExternalValue={setRbValue}
-          setStateOfChangingDtW={() => setConvertingDtW(true)}
-        />
-        <ValidatedInput
-          externalValue={rcValue}
-          setExternalValue={setRcValue}
-          setStateOfChangingDtW={() => setConvertingDtW(true)}
-        />
+        <DeltaInputContainer>
+          <ValidatedInput
+            externalValue={raValue}
+            setExternalValue={setRaValue}
+            setStateOfChangingDtW={() => setConvertingDtW(true)}
+          />
+          <ValidatedInput
+            externalValue={rbValue}
+            setExternalValue={setRbValue}
+            setStateOfChangingDtW={() => setConvertingDtW(true)}
+          />
+          <ValidatedInput
+            externalValue={rcValue}
+            setExternalValue={setRcValue}
+            setStateOfChangingDtW={() => setConvertingDtW(true)}
+          />
+        </DeltaInputContainer>
       </DeltaFieldContainer>
       <Spacer />
       <FieldContainer>
-        <img src={wyeImage} alt="3 resistors arranged in wye" />
-        <ValidatedInput
-          externalValue={r1Value}
-          setExternalValue={setR1Value}
-          setStateOfChangingDtW={() => setConvertingDtW(false)}
-        />
-        <ValidatedInput
-          externalValue={r2Value}
-          setExternalValue={setR2Value}
-          setStateOfChangingDtW={() => setConvertingDtW(false)}
-        />
-        <ValidatedInput
-          externalValue={r3Value}
-          setExternalValue={setR3Value}
-          setStateOfChangingDtW={() => setConvertingDtW(false)}
-        />
+        <SVGContainer>
+          <img src={wyeImage} alt="3 resistors arranged in wye" />
+        </SVGContainer>
+        <WyeInputContainer>
+          <ValidatedInput
+            externalValue={r1Value}
+            setExternalValue={setR1Value}
+            setStateOfChangingDtW={() => setConvertingDtW(false)}
+          />
+          <ValidatedInput
+            externalValue={r2Value}
+            setExternalValue={setR2Value}
+            setStateOfChangingDtW={() => setConvertingDtW(false)}
+          />
+          <ValidatedInput
+            externalValue={r3Value}
+            setExternalValue={setR3Value}
+            setStateOfChangingDtW={() => setConvertingDtW(false)}
+          />
+        </WyeInputContainer>
       </FieldContainer>
     </Main>
   );
