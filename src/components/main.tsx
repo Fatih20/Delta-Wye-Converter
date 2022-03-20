@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
 
-import { inputConnectedVariable } from "../utilities/types";
+import { inputConnectedVariable, unitPrefix } from "../utilities/types";
 import ValidatedInput from "./input";
 
 import { VanillaButton } from "../GlobalComponent";
@@ -289,6 +289,14 @@ export default function MainConversion() {
   const [r2Value, setR2Value] = useState("" as inputConnectedVariable);
   const [r3Value, setR3Value] = useState("" as inputConnectedVariable);
 
+  const [raUnitPrefix, setRaUnitPrefix] = useState([0, "", ""] as unitPrefix);
+  const [rbUnitPrefix, setRbUnitPrefix] = useState([0, "", ""] as unitPrefix);
+  const [rcUnitPrefix, setRcUnitPrefix] = useState([0, "", ""] as unitPrefix);
+
+  const [r1UnitPrefix, setR1UnitPrefix] = useState([0, "", ""] as unitPrefix);
+  const [r2UnitPrefix, setR2UnitPrefix] = useState([0, "", ""] as unitPrefix);
+  const [r3UnitPrefix, setR3UnitPrefix] = useState([0, "", ""] as unitPrefix);
+
   const [isWye, setIsWye] = useState(true);
   const [isDelta, setIsDelta] = useState(true);
 
@@ -296,14 +304,30 @@ export default function MainConversion() {
     () => {
       if (convertingDtW) {
         if (!(raValue === "" || rbValue === "" || rcValue === "")) {
-          const { r1, r2, r3 } = deltaToWyeConverter(raValue, rbValue, rcValue);
+          const convertedRaValue = (raValue * 10) ^ raUnitPrefix[0];
+          const convertedRbValue = (raValue * 10) ^ rbUnitPrefix[0];
+          const convertedRcValue = (raValue * 10) ^ rcUnitPrefix[0];
+
+          const { r1, r2, r3 } = deltaToWyeConverter(
+            convertedRaValue,
+            convertedRbValue,
+            convertedRcValue
+          );
           setR1Value(r1);
           setR2Value(r2);
           setR3Value(r3);
         }
       } else {
         if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
-          const { ra, rb, rc } = wyeToDeltaConverter(r1Value, r2Value, r3Value);
+          const convertedR1Value = (r1Value * 10) ^ r1UnitPrefix[0];
+          const convertedR2Value = (r2Value * 10) ^ r2UnitPrefix[0];
+          const convertedR3Value = (r3Value * 10) ^ r3UnitPrefix[0];
+
+          const { ra, rb, rc } = wyeToDeltaConverter(
+            convertedR1Value,
+            convertedR2Value,
+            convertedR3Value
+          );
           setRaValue(ra);
           setRbValue(rb);
           setRcValue(rc);
