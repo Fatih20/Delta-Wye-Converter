@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { GlobalTransition } from "./GlobalComponent";
 import MainConversion from "./components/main";
 import Header from "./components/header";
 
@@ -12,10 +13,13 @@ const Main = styled.div`
 
 function App() {
   return (
-    <Main>
-      <Header />
-      <MainConversion />
-    </Main>
+    <>
+      <GlobalTransition />
+      <Main>
+        <Header />
+        <MainConversion />
+      </Main>
+    </>
   );
 }
 
