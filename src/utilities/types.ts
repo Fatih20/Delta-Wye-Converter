@@ -1,6 +1,6 @@
 export type inputConnectedVariable = "" | number;
 
-const unitPowerMultiplierArray = <const> [-12, -9, -6, -3, 0, 3, 6, 9]
+export const unitPowerMultiplierArray = [-12, -9, -6, -3, 0, 3, 6, 9] as const;
 // const unitShortPrefixArray = <const> ["p", "n", "&mu;", "m", "", "k", "M", "G"]
 const unitShortPrefixArray = <const> ["p", "n", "\u03BC", "m", "", "k", "M", "G"]
 export const unitLongPrefixArray = <const> ["pico", "nano", "micro", "mili", "none", "kilo", "mega", "giga"]
@@ -40,6 +40,28 @@ export function unitPrefixInformation (givenUnitLongPrefix : unitLongPrefix) : [
         return [9, "G"];
     } else {
         return [9, "G"];
+    }
+}
+
+export function unitPowerInformation (givenPower : number) : [unitLongPrefix | "Not Found", unitShortPrefix | "Not Found"]{
+    if (givenPower === -12){
+        return ["pico", "p"];
+    } else if (givenPower === -9){
+        return ["nano", "n"];
+    } else if (givenPower === -6) {
+        return ["micro", "\u03BC"];
+    } else if (givenPower === -3){
+        return ["mili", "m"];
+    } else if (givenPower === 0){
+        return ["none", ""];
+    }else if (givenPower === 3){
+        return ["kilo", "k"];
+    } else if (givenPower === 6){
+        return ["mega", "M"];
+    } else if (givenPower === 9){
+        return ["giga", "G"];
+    } else {
+        return ["Not Found", "Not Found"];
     }
 }
 

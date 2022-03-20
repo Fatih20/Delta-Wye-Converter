@@ -57,13 +57,13 @@ export default function ValidatedInput({
   setExternalValue,
   setStateOfChangingDtW,
   setStateOfUnitPrefix,
-  defaultUnitPrefix,
+  currentUnitPrefix,
 }: {
   externalValue: inputConnectedVariable;
   setExternalValue: (arg0: inputConnectedVariable) => void;
   setStateOfChangingDtW: () => void;
   setStateOfUnitPrefix: (arg0: unitLongPrefix) => void;
-  defaultUnitPrefix: unitLongPrefix;
+  currentUnitPrefix: unitLongPrefix;
 }) {
   function handleValueChange(e: any) {
     let newValue = e.target.value;
@@ -112,21 +112,26 @@ export default function ValidatedInput({
         value={externalValue}
         onChange={handleValueChange}
       />
-      <StyledSelect onChange={handleUnitChange}>
+      <StyledSelect value={currentUnitPrefix} onChange={handleUnitChange}>
         {unitLongPrefixArray.map((prefix) => {
-          if (prefix === defaultUnitPrefix) {
-            return (
-              <StyledOption value={prefix} selected>
-                {unitPrefixInformation(prefix)[1]} &Omega;
-              </StyledOption>
-            );
-          } else {
-            return (
-              <StyledOption value={prefix}>
-                {unitPrefixInformation(prefix)[1]}&Omega;
-              </StyledOption>
-            );
-          }
+          // if (prefix === defaultUnitPrefix) {
+          //   return (
+          //     <StyledOption value={prefix} selected>
+          //       {unitPrefixInformation(prefix)[1]} &Omega;
+          //     </StyledOption>
+          //   );
+          // } else {
+          //   return (
+          //     <StyledOption value={prefix}>
+          //       {unitPrefixInformation(prefix)[1]}&Omega;
+          //     </StyledOption>
+          //   );
+          // }
+          return (
+            <StyledOption value={prefix}>
+              {unitPrefixInformation(prefix)[1]}&Omega;
+            </StyledOption>
+          );
         })}
       </StyledSelect>
     </Main>

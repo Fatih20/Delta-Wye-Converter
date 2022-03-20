@@ -25,6 +25,7 @@ import piImage from "../images/PiCompressed.svg";
 import {
   deltaToWyeConverter,
   wyeToDeltaConverter,
+  properUnitConverter,
 } from "../utilities/conversionLogic";
 
 interface IArrowContainer {
@@ -310,17 +311,6 @@ export default function MainConversion() {
 
   useEffect(
     () => {
-      const orderOfMagnitude = 10 ** unitPrefixInformation(raUnitPrefix)[0];
-      // const orderOfMagnitude = 10 ^ 0;
-      // console.log(orderOfMagnitude);
-      console.log(
-        raUnitPrefix,
-        rbUnitPrefix,
-        rcUnitPrefix,
-        r1UnitPrefix,
-        r2UnitPrefix,
-        r3UnitPrefix
-      );
       if (convertingDtW) {
         if (!(raValue === "" || rbValue === "" || rcValue === "")) {
           const convertedRaValue =
@@ -335,17 +325,17 @@ export default function MainConversion() {
             convertedRbValue,
             convertedRcValue
           );
-          const unitAdjustedR1Value =
-            r1 / 10 ** unitPrefixInformation(r1UnitPrefix)[0];
-          const unitAdjustedR2Value =
-            r2 / 10 ** unitPrefixInformation(r2UnitPrefix)[0];
-          const unitAdjustedR3Value =
-            r3 / 10 ** unitPrefixInformation(r3UnitPrefix)[0];
+          const [unitAdjustedR1Value, adjustedR1Unit] = properUnitConverter(r1);
+          const [unitAdjustedR2Value, adjustedR2Unit] = properUnitConverter(r2);
+          const [unitAdjustedR3Value, adjustedR3Unit] = properUnitConverter(r3);
 
           console.log(r1, r2, r3);
           setR1Value(unitAdjustedR1Value);
           setR2Value(unitAdjustedR2Value);
           setR3Value(unitAdjustedR3Value);
+          setR1UnitPrefix(adjustedR1Unit);
+          setR2UnitPrefix(adjustedR2Unit);
+          setR3UnitPrefix(adjustedR3Unit);
         }
       } else {
         if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
@@ -362,16 +352,16 @@ export default function MainConversion() {
             convertedR3Value
           );
 
-          const unitAdjustedRaValue =
-            ra / 10 ** unitPrefixInformation(raUnitPrefix)[0];
-          const unitAdjustedRbValue =
-            rb / 10 ** unitPrefixInformation(rbUnitPrefix)[0];
-          const unitAdjustedRcValue =
-            rc / 10 ** unitPrefixInformation(rcUnitPrefix)[0];
+          const [unitAdjustedRaValue, adjustedRaUnit] = properUnitConverter(ra);
+          const [unitAdjustedRbValue, adjustedRbUnit] = properUnitConverter(rb);
+          const [unitAdjustedRcValue, adjustedRcUnit] = properUnitConverter(rc);
 
           setRaValue(unitAdjustedRaValue);
           setRbValue(unitAdjustedRbValue);
           setRcValue(unitAdjustedRcValue);
+          setRaUnitPrefix(adjustedRaUnit);
+          setRbUnitPrefix(adjustedRbUnit);
+          setRcUnitPrefix(adjustedRcUnit);
         }
       }
     },
@@ -405,7 +395,7 @@ export default function MainConversion() {
               setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
                 setRaUnitPrefix(selectedUnit)
               }
-              defaultUnitPrefix={"none" as unitLongPrefix}
+              currentUnitPrefix={raUnitPrefix}
             />
             <ValidatedInput
               externalValue={rbValue}
@@ -414,7 +404,7 @@ export default function MainConversion() {
               setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
                 setRbUnitPrefix(selectedUnit)
               }
-              defaultUnitPrefix={"none" as unitLongPrefix}
+              currentUnitPrefix={rbUnitPrefix}
             />
             <ValidatedInput
               externalValue={rcValue}
@@ -423,7 +413,7 @@ export default function MainConversion() {
               setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
                 setRcUnitPrefix(selectedUnit)
               }
-              defaultUnitPrefix={"none" as unitLongPrefix}
+              currentUnitPrefix={rcUnitPrefix}
             />
           </DeltaInputContainer>
         </DeltaFieldContainer>
@@ -455,7 +445,7 @@ export default function MainConversion() {
               setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
                 setR1UnitPrefix(selectedUnit)
               }
-              defaultUnitPrefix={"none" as unitLongPrefix}
+              currentUnitPrefix={r1UnitPrefix}
             />
             <ValidatedInput
               externalValue={r2Value}
@@ -464,7 +454,7 @@ export default function MainConversion() {
               setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
                 setR2UnitPrefix(selectedUnit)
               }
-              defaultUnitPrefix={"none" as unitLongPrefix}
+              currentUnitPrefix={r2UnitPrefix}
             />
             <ValidatedInput
               externalValue={r3Value}
@@ -473,7 +463,7 @@ export default function MainConversion() {
               setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
                 setR3UnitPrefix(selectedUnit)
               }
-              defaultUnitPrefix={"none" as unitLongPrefix}
+              currentUnitPrefix={r3UnitPrefix}
             />
           </WyeInputContainer>
         </WyeFieldContainer>
