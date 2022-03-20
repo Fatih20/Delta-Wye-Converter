@@ -2,6 +2,22 @@ import { useState } from "react";
 import { inputConnectedVariable } from "../utilities/types";
 import styled from "styled-components";
 
+import {
+  unitCompletePrefix,
+  completePrefixArray,
+  unitLongPrefixArray,
+  unitLongPrefix,
+  unitPrefixInformation,
+} from "../utilities/types";
+
+const Main = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+`;
+
 const StyledInput = styled.input`
   border: solid 2px #333333;
   border-radius: 4px;
@@ -11,6 +27,8 @@ const StyledInput = styled.input`
   filter: drop-shadow(0 3px 5px #0000007a);
   padding: 0.4em;
 `;
+
+const StyledSelect = styled.select``;
 
 function countInArray(array: string[], checkedValue: string) {
   return array.reduce(
@@ -26,12 +44,16 @@ export default function ValidatedInput({
   externalValue,
   setExternalValue,
   setStateOfChangingDtW,
+  setStateOfUnitPrefix,
+  defaultUnitPrefix,
 }: {
   externalValue: inputConnectedVariable;
   setExternalValue: (arg0: inputConnectedVariable) => void;
   setStateOfChangingDtW: () => void;
+  setStateOfUnitPrefix: (arg0: unitLongPrefix) => void;
+  defaultUnitPrefix: unitLongPrefix;
 }) {
-  function handleChange(e: any) {
+  function handleValueChange(e: any) {
     let newValue = e.target.value;
     let inputValid = true;
     // Handle backspace
@@ -64,7 +86,37 @@ export default function ValidatedInput({
     }
   }
 
+  function handleUnitChange(e: any) {
+    const newUnitLongPrefix = e.target.value;
+    console.log(newUnitLongPrefix);
+    setStateOfChangingDtW();
+    setStateOfUnitPrefix(newUnitLongPrefix);
+  }
+
   return (
-    <StyledInput type="number" value={externalValue} onChange={handleChange} />
+    <Main>
+      <StyledInput
+        type="number"
+        value={externalValue}
+        onChange={handleValueChange}
+      />
+      <StyledSelect onChange={handleUnitChange}>
+        {unitLongPrefixArray.map((prefix) => {
+          if (prefix === defaultUnitPrefix) {
+            return (
+              <option value={prefix} selected>
+                {unitPrefixInformation(prefix)[1]}&Omega;
+              </option>
+            );
+          } else {
+            return (
+              <option value={prefix}>
+                {unitPrefixInformation(prefix)[1]}&Omega;
+              </option>
+            );
+          }
+        })}
+      </StyledSelect>
+    </Main>
   );
 }
