@@ -1,7 +1,8 @@
 export type inputConnectedVariable = "" | number;
 
 const unitPowerMultiplierArray = <const> [-12, -9, -6, -3, 0, 3, 6, 9]
-const unitShortPrefixArray = <const> ["p", "n", "&mu;", "m", "", "k", "M", "G"]
+// const unitShortPrefixArray = <const> ["p", "n", "&mu;", "m", "", "k", "M", "G"]
+const unitShortPrefixArray = <const> ["p", "n", "\u03BC", "m", "", "k", "M", "G"]
 export const unitLongPrefixArray = <const> ["pico", "nano", "micro", "mili", "none", "kilo", "mega", "giga"]
 
 export type unitPowerMultiplier = typeof unitPowerMultiplierArray[number];
@@ -26,7 +27,7 @@ export function unitPrefixInformation (givenUnitLongPrefix : unitLongPrefix) : [
     } else if (givenUnitLongPrefix === "nano"){
         return [-9, "n"];
     } else if (givenUnitLongPrefix === "micro") {
-        return [-6, "&mu;"];
+        return [-6, "\u03BC"];
     } else if (givenUnitLongPrefix === "mili"){
         return [-3, "m"];
     } else if (givenUnitLongPrefix === "none"){
