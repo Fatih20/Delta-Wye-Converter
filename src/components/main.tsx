@@ -53,6 +53,18 @@ const Main = styled.div`
     grid-column-gap: 50px;
     justify-items: center;
   }
+
+  /* Chrome, Safari, Edge, Opera */
+  & input::-webkit-outer-spin-button,
+  & input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  & input[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 
 const ArrowContainer = styled.div<IArrowContainer>`
@@ -93,6 +105,8 @@ const DeltaWyeContainer = styled.div`
   @media (min-width: 900px) {
     width: min(100%, 600px);
   }
+
+  /* border: solid 1px white; */
 `;
 
 const NetworkTypeChooser = styled.div`
