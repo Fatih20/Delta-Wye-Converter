@@ -28,7 +28,16 @@ const StyledInput = styled.input`
   padding: 0.4em;
 `;
 
-const StyledSelect = styled.select``;
+const StyledSelect = styled.select`
+  background-color: #333333;
+  color: #ffffff;
+  filter: drop-shadow(0 3px 5px #0000007a);
+  outline: none;
+  padding: 0.25em;
+  text-align: center;
+`;
+
+const StyledOption = styled.option``;
 
 function countInArray(array: string[], checkedValue: string) {
   return array.reduce(
@@ -104,15 +113,15 @@ export default function ValidatedInput({
         {unitLongPrefixArray.map((prefix) => {
           if (prefix === defaultUnitPrefix) {
             return (
-              <option value={prefix} selected>
-                {unitPrefixInformation(prefix)[1]}&Omega;
-              </option>
+              <StyledOption value={prefix} selected>
+                {unitPrefixInformation(prefix)[1]} &Omega;
+              </StyledOption>
             );
           } else {
             return (
-              <option value={prefix}>
+              <StyledOption value={prefix}>
                 {unitPrefixInformation(prefix)[1]}&Omega;
-              </option>
+              </StyledOption>
             );
           }
         })}
