@@ -32,9 +32,9 @@ const Main = styled.div`
 
   @media (min-width: 900px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 40px 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "delta wye";
+    grid-template-areas: "delta arrow wye";
     grid-column-gap: 50px;
     justify-items: center;
   }
@@ -75,6 +75,13 @@ const ArrowContainer = styled.div<IArrowContainer>`
   & * {
     font-size: 4em;
     /* font-weight: 600; */
+  }
+
+  @media (min-width: 900px) {
+    grid-area: arrow;
+    transform: rotate(
+      ${({ convertingDtW }) => (convertingDtW ? "270deg" : "90deg")}
+    );
   }
 
   /* border: solid 1px white; */
@@ -177,10 +184,6 @@ const WyeFieldContainer = styled(FieldContainer)`
   @media (min-width: 900px) {
     grid-area: wye;
   }
-`;
-
-const Spacer = styled.div`
-  margin: 20px 0 20px 0;
 `;
 
 const SVGContainer = styled.div`
