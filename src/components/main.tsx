@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
 
-import { inputConnectedVariable, unitPrefix } from "../utilities/types";
+import { inputConnectedVariable, completePrefix } from "../utilities/types";
 import ValidatedInput from "./input";
 
 import { VanillaButton } from "../GlobalComponent";
@@ -289,13 +289,37 @@ export default function MainConversion() {
   const [r2Value, setR2Value] = useState("" as inputConnectedVariable);
   const [r3Value, setR3Value] = useState("" as inputConnectedVariable);
 
-  const [raUnitPrefix, setRaUnitPrefix] = useState([0, "", ""] as unitPrefix);
-  const [rbUnitPrefix, setRbUnitPrefix] = useState([0, "", ""] as unitPrefix);
-  const [rcUnitPrefix, setRcUnitPrefix] = useState([0, "", ""] as unitPrefix);
+  const [raUnitPrefix, setRaUnitPrefix] = useState([
+    0,
+    "",
+    "",
+  ] as completePrefix);
+  const [rbUnitPrefix, setRbUnitPrefix] = useState([
+    0,
+    "",
+    "",
+  ] as completePrefix);
+  const [rcUnitPrefix, setRcUnitPrefix] = useState([
+    0,
+    "",
+    "",
+  ] as completePrefix);
 
-  const [r1UnitPrefix, setR1UnitPrefix] = useState([0, "", ""] as unitPrefix);
-  const [r2UnitPrefix, setR2UnitPrefix] = useState([0, "", ""] as unitPrefix);
-  const [r3UnitPrefix, setR3UnitPrefix] = useState([0, "", ""] as unitPrefix);
+  const [r1UnitPrefix, setR1UnitPrefix] = useState([
+    0,
+    "",
+    "",
+  ] as completePrefix);
+  const [r2UnitPrefix, setR2UnitPrefix] = useState([
+    0,
+    "",
+    "",
+  ] as completePrefix);
+  const [r3UnitPrefix, setR3UnitPrefix] = useState([
+    0,
+    "",
+    "",
+  ] as completePrefix);
 
   const [isWye, setIsWye] = useState(true);
   const [isDelta, setIsDelta] = useState(true);
