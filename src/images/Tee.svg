@@ -38,8 +38,8 @@
      pagecolor="#ffffff"
      id="base"
      inkscape:zoom="5.6568545"
-     inkscape:cx="56.126598"
-     inkscape:cy="26.781668"
+     inkscape:cx="89.537392"
+     inkscape:cy="35.090172"
      inkscape:window-x="0"
      inkscape:window-y="30"
      inkscape:current-layer="svg2"
@@ -133,7 +133,7 @@
      inkscape:connector-curvature="0"
      id="path1279"
      d="m 9.4340073,6.0574159 c 0,1.7146665 -1.3878519,3.1103933 -3.1076769,3.1103933 -1.7139754,0 -3.1076769,-1.3898746 -3.1076769,-3.1103933 0,-1.7132035 1.3878518,-3.1074673 3.1076769,-3.1074673 1.7139753,0 3.1076769,1.3884116 3.1076769,3.1074673"
-     style="fill:#fafafa;fill-rule:evenodd;stroke:none;stroke-width:1" />
+     style="fill:#8cd5ff;fill-rule:evenodd;stroke:none;stroke-width:1" />
   <path
      inkscape:connector-curvature="0"
      id="path7331"
@@ -143,10 +143,10 @@
      inkscape:connector-curvature="0"
      id="path7333"
      d="m 101.78135,6.0574197 c 0,1.7146674 -1.38786,3.1103937 -3.10768,3.1103937 -1.713977,0 -3.107677,-1.3898743 -3.107677,-3.1103937 0,-1.713203 1.387852,-3.1074669 3.107677,-3.1074669 1.71397,0 3.10768,1.3884119 3.10768,3.1074669"
-     style="fill:#fafafa;fill-rule:evenodd;stroke:none;stroke-width:1" />
+     style="fill:#ff8c82;fill-rule:evenodd;stroke:none;stroke-width:1" />
   <path
      inkscape:connector-curvature="0"
      id="path7335"
      d="m 55.607167,86.889605 c 0,1.714668 -1.387852,3.110394 -3.107677,3.110394 -1.713977,0 -3.107678,-1.389874 -3.107678,-3.110394 0,-1.713203 1.387851,-3.107467 3.107678,-3.107467 1.713974,0 3.107677,1.388412 3.107677,3.107467"
-     style="fill:#fafafa;fill-rule:evenodd;stroke:none;stroke-width:1" />
+     style="fill:#d1ff82;fill-rule:evenodd;stroke:none;stroke-width:1" />
 </svg>
