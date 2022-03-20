@@ -6,22 +6,6 @@ function rounder (value : number, decimal : number){
     return parseFloat(value.toFixed(decimal))
 }
 
-function deltaToWyeConverter(ra:number, rb:number, rc:number) {
-    const resistorSum = ra+rb+rc;
-    const r1 = rounder((ra*rb)/resistorSum, toWhatDigit)
-    const r2 = rounder((ra*rc)/resistorSum, toWhatDigit)
-    const r3 = rounder((rb*rc)/resistorSum, toWhatDigit)
-    return {r1, r2, r3}
-}
-
-function wyeToDeltaConverter(r1:number, r2:number, r3:number) {
-    const resistorProductSum = r1*r2+r2*r3+r3*r1;
-    const ra = rounder(resistorProductSum/(r3), toWhatDigit)
-    const rb = rounder(resistorProductSum/(r2), toWhatDigit)
-    const rc = rounder(resistorProductSum/(r1), toWhatDigit)
-    return {ra, rb, rc}
-}
-
 export function properUnitConverter (givenResistance : number) : [number, unitLongPrefix]{
     // const currentOrderOfMagnitude = 10** unitPrefixInformation(unit)[0]
     const [newValueRaw, closestPowerRaw] = givenResistance.toExponential().split('e');
@@ -60,6 +44,42 @@ export function properUnitConverter (givenResistance : number) : [number, unitLo
     }
 
 
+}
+
+function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number, rbUnitPrefix: unitLongPrefix, rc:number, rcUnitPrefix: unitLongPrefix) {
+
+    const convertedRaValue = ra * 10 ** unitPrefixInformation(raUnitPrefix)[0];
+    const convertedRbValue = rb * 10 ** unitPrefixInformation(rbUnitPrefix)[0];
+    const convertedRcValue = rc * 10 ** unitPrefixInformation(rcUnitPrefix)[0];
+
+    const resistorSum = convertedRaValue+convertedRbValue+convertedRcValue;
+    const r1Raw = rounder((convertedRaValue*convertedRbValue)/resistorSum, toWhatDigit)
+    const r2Raw = rounder((convertedRaValue*convertedRcValue)/resistorSum, toWhatDigit)
+    const r3Raw = rounder((convertedRbValue*convertedRcValue)/resistorSum, toWhatDigit)
+
+    const [r1, adjustedR1Unit] = properUnitConverter(r1Raw);
+    const [r2, adjustedR2Unit] = properUnitConverter(r2Raw);
+    const [r3, adjustedR3Unit] = properUnitConverter(r3Raw);
+
+    return {r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit}
+}
+
+function wyeToDeltaConverter(r1:number, r1UnitPrefix : unitLongPrefix, r2:number, r2UnitPrefix: unitLongPrefix, r3:number, r3UnitPrefix: unitLongPrefix) {
+    
+    const convertedR1Value = r1 * 10 ** unitPrefixInformation(r1UnitPrefix)[0];
+    const convertedR2Value = r2 * 10 ** unitPrefixInformation(r2UnitPrefix)[0];
+    const convertedR3Value = r3 * 10 ** unitPrefixInformation(r3UnitPrefix)[0];
+    
+    const resistorProductSum = convertedR1Value*convertedR2Value+convertedR2Value*convertedR3Value+convertedR3Value*convertedR1Value;
+    const raRaw = rounder(resistorProductSum/(convertedR3Value), toWhatDigit);
+    const rbRaw = rounder(resistorProductSum/(convertedR2Value), toWhatDigit);
+    const rcRaw = rounder(resistorProductSum/(convertedR1Value), toWhatDigit);
+
+    const [ra, adjustedRaUnit] = properUnitConverter(raRaw);
+    const [rb, adjustedRbUnit] = properUnitConverter(rbRaw);
+    const [rc, adjustedRcUnit] = properUnitConverter(rcRaw);
+
+    return {ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit}
 }
 
 export {deltaToWyeConverter, wyeToDeltaConverter};

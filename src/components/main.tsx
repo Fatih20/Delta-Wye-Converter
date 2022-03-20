@@ -313,52 +313,40 @@ export default function MainConversion() {
     () => {
       if (convertingDtW) {
         if (!(raValue === "" || rbValue === "" || rcValue === "")) {
-          const convertedRaValue =
-            raValue * 10 ** unitPrefixInformation(raUnitPrefix)[0];
-          const convertedRbValue =
-            rbValue * 10 ** unitPrefixInformation(rbUnitPrefix)[0];
-          const convertedRcValue =
-            rcValue * 10 ** unitPrefixInformation(rcUnitPrefix)[0];
-
-          const { r1, r2, r3 } = deltaToWyeConverter(
-            convertedRaValue,
-            convertedRbValue,
-            convertedRcValue
-          );
-          const [unitAdjustedR1Value, adjustedR1Unit] = properUnitConverter(r1);
-          const [unitAdjustedR2Value, adjustedR2Unit] = properUnitConverter(r2);
-          const [unitAdjustedR3Value, adjustedR3Unit] = properUnitConverter(r3);
+          const { r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit } =
+            deltaToWyeConverter(
+              raValue,
+              raUnitPrefix,
+              rbValue,
+              rbUnitPrefix,
+              rcValue,
+              rcUnitPrefix
+            );
 
           console.log(r1, r2, r3);
-          setR1Value(unitAdjustedR1Value);
-          setR2Value(unitAdjustedR2Value);
-          setR3Value(unitAdjustedR3Value);
+          setR1Value(r1);
+          setR2Value(r2);
+          setR3Value(r3);
           setR1UnitPrefix(adjustedR1Unit);
           setR2UnitPrefix(adjustedR2Unit);
           setR3UnitPrefix(adjustedR3Unit);
         }
       } else {
         if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
-          const convertedR1Value =
-            r1Value * 10 ** unitPrefixInformation(r1UnitPrefix)[0];
-          const convertedR2Value =
-            r2Value * 10 ** unitPrefixInformation(r2UnitPrefix)[0];
-          const convertedR3Value =
-            r3Value * 10 ** unitPrefixInformation(r3UnitPrefix)[0];
+          const { ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit } =
+            wyeToDeltaConverter(
+              r1Value,
+              r1UnitPrefix,
+              r2Value,
+              r3UnitPrefix,
+              r3Value,
+              r3UnitPrefix
+            );
 
-          const { ra, rb, rc } = wyeToDeltaConverter(
-            convertedR1Value,
-            convertedR2Value,
-            convertedR3Value
-          );
-
-          const [unitAdjustedRaValue, adjustedRaUnit] = properUnitConverter(ra);
-          const [unitAdjustedRbValue, adjustedRbUnit] = properUnitConverter(rb);
-          const [unitAdjustedRcValue, adjustedRcUnit] = properUnitConverter(rc);
-
-          setRaValue(unitAdjustedRaValue);
-          setRbValue(unitAdjustedRbValue);
-          setRcValue(unitAdjustedRcValue);
+          console.log(ra, rb, rc);
+          setRaValue(ra);
+          setRbValue(rb);
+          setRcValue(rc);
           setRaUnitPrefix(adjustedRaUnit);
           setRbUnitPrefix(adjustedRbUnit);
           setRcUnitPrefix(adjustedRcUnit);
