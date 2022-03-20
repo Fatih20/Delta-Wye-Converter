@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
+
 import { inputConnectedVariable } from "../utilities/types";
 import ValidatedInput from "./input";
 
@@ -12,20 +15,76 @@ import {
   wyeToDeltaConverter,
 } from "../utilities/conversionLogic";
 
+interface IArrowContainer {
+  convertingDtW: boolean;
+}
+
 const Main = styled.div`
   align-items: center;
+  box-sizing: border-box;
   display: flex;
+  /* gap: 20px; */
   flex-direction: column;
   padding: 0 1em;
+  position: relative;
+
+  /* border: solid 1px white; */
 
   @media (min-width: 900px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 40px 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "delta wye";
+    grid-template-areas: "delta arrow wye";
     grid-column-gap: 50px;
     justify-items: center;
   }
+`;
+
+// const ArrowContainer = styled.div`
+//   align-items: center;
+//   color: #d4d4d4;
+//   display: flex;
+//   height: 100%;
+//   justify-content: center;
+//   position: absolute;
+//   pointer-events: none;
+//   width: 100%;
+
+//   & * {
+//     font-size: 4em;
+//     /* font-weight: 600; */
+//   }
+
+//   /* border: solid 1px white; */
+// `;
+
+const ArrowContainer = styled.div<IArrowContainer>`
+  align-items: center;
+  color: #d4d4d4;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  /* padding-top: 40px; */
+  width: 100%;
+
+  transform: rotate(
+    ${({ convertingDtW }) => (convertingDtW ? "0deg" : "180deg")}
+  );
+
+  transition: transform 0.25s ease-in-out;
+  & * {
+    font-size: 4em;
+    /* font-weight: 600; */
+  }
+
+  @media (min-width: 900px) {
+    grid-area: arrow;
+    transform: rotate(
+      ${({ convertingDtW }) => (convertingDtW ? "270deg" : "90deg")}
+    );
+  }
+
+  /* border: solid 1px white; */
 `;
 
 const FieldContainer = styled.div`
@@ -113,19 +172,18 @@ const WyeInputContainer = styled(InputContainer)`
 `;
 
 const DeltaFieldContainer = styled(FieldContainer)`
+  /* border: solid 1px white; */
+  margin-bottom: 40px;
   @media (min-width: 900px) {
     grid-area: delta;
   }
 `;
 
 const WyeFieldContainer = styled(FieldContainer)`
+  /* border: solid 1px white; */
   @media (min-width: 900px) {
     grid-area: wye;
   }
-`;
-
-const Spacer = styled.div`
-  margin: 20px 0 20px 0;
 `;
 
 const SVGContainer = styled.div`
@@ -195,7 +253,9 @@ export default function MainConversion() {
           />
         </DeltaInputContainer>
       </DeltaFieldContainer>
-      <Spacer />
+      <ArrowContainer convertingDtW={convertingDtW}>
+        <FontAwesomeIcon icon={faArrowDownLong} />
+      </ArrowContainer>
       <WyeFieldContainer>
         <SVGContainer>
           <img src={wyeImage} alt="3 resistors arranged in wye" />
