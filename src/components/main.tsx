@@ -14,7 +14,10 @@ import { VanillaButton } from "../GlobalComponent";
 import {
   useConversionFunctionUsedContext,
   useUnitOfComponentUsedContext,
+  useComponentUsedContext,
 } from "../context/componentUsed";
+
+import { conversionFunction } from "../utilities/conversionLogic";
 
 import deltaImage from "../images/DeltaCompressed.svg";
 import wyeImage from "../images/WyeCompressed.svg";
@@ -303,12 +306,15 @@ export default function MainConversion() {
   const [isWye, setIsWye] = useState(true);
   const [isDelta, setIsDelta] = useState(true);
 
-  const conversionFunctionUsed =
-    useConversionFunctionUsedContext()(convertingDtW);
   const currentUnit = useUnitOfComponentUsedContext();
+  const componentUsed = useComponentUsedContext();
 
   function dependencyOfRecalculation() {
-    let dependency: (string | number)[] = [decimalPlace];
+    let dependency: (string | number)[] = [
+      decimalPlace,
+      currentUnit,
+      componentUsed,
+    ];
 
     if (convertingDtW) {
       dependency = dependency.concat([
@@ -333,6 +339,10 @@ export default function MainConversion() {
     return dependency;
   }
   useEffect(() => {
+    const conversionFunctionUsed = conversionFunction(
+      componentUsed,
+      convertingDtW
+    );
     if (convertingDtW) {
       if (!(raValue === "" || rbValue === "" || rcValue === "")) {
         const [r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit] =
