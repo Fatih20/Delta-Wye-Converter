@@ -24,7 +24,7 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
 
     const smallestPowerDifference = differenceBetweenUnitPowerArray.reduce((previousValue : number, currentValue : number) => {
         if ((Math.abs(currentValue) < Math.abs(previousValue))) {
-            if ((closestPower >= 0 && currentValue + closestPower > 0) || (closestPower < 0 && currentValue + closestPower <= 0)) {
+            if ((closestPower > 0 && currentValue + closestPower > 0) || (closestPower <= 0 && currentValue + closestPower <= 0)) {
                 return currentValue
             }
         } 
