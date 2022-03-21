@@ -6,8 +6,18 @@ import {
   useSetDecimalPlaceContext,
 } from "../context/decimalPlace";
 
+import {
+  useComponentUsedContext,
+  useSetComponentUsedContext,
+  useUnitOfComponentUsedContext,
+} from "../context/componentUsed";
+
 import { isInputValidInt } from "../utilities/inputValidation";
 import { VanillaButton } from "../GlobalComponent";
+
+interface IComponentButton {
+  selected: boolean;
+}
 
 const Main = styled.div`
   align-items: center;
@@ -60,9 +70,29 @@ const DecimalInline = styled.p`
   text-align: center;
 `;
 
+const ComponentChooserContainer = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+`;
+
+const ComponentButton = styled(VanillaButton)<IComponentButton>`
+  border: solid 1px #000000;
+  border-radius: 2px;
+  background-color: #333333;
+  color: ${({ selected }) => (selected ? "white" : "#abacae")};
+  filter: drop-shadow(0 3px 5px #0000007a);
+  padding: 5px 0;
+  width: 75px;
+`;
+
 export default function ControlPanel() {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
+  const componentUsed = useComponentUsedContext();
+  const unitOfComponentUsed = useUnitOfComponentUsedContext();
+  const setComponentUsed = useSetComponentUsedContext();
 
   function handleDecimalChange(e: any) {
     const newValue = e.target.value;
@@ -91,11 +121,28 @@ export default function ControlPanel() {
     }
   }
 
-  useEffect(() => {
-    console.log(decimalPlace);
-  }, [decimalPlace]);
   return (
     <Main>
+      <ComponentChooserContainer>
+        <ComponentButton
+          onClick={() => setComponentUsed("R")}
+          selected={componentUsed === "R"}
+        >
+          Resistor
+        </ComponentButton>
+        <ComponentButton
+          onClick={() => setComponentUsed("L")}
+          selected={componentUsed === "L"}
+        >
+          Inductor
+        </ComponentButton>
+        <ComponentButton
+          onClick={() => setComponentUsed("C")}
+          selected={componentUsed === "C"}
+        >
+          Capacitor
+        </ComponentButton>
+      </ComponentChooserContainer>
       <DecimalInline>Precise to</DecimalInline>
       <DecimalInput>
         <IncrementerButton onClick={() => incrementer(false)}>
