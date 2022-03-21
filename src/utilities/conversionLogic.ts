@@ -1,7 +1,5 @@
 import { unitLongPrefix, unitPrefixInformation, unitPowerMultiplierArray, unitPowerInformation, unitPowerMultiplier, unitShortPrefix } from "./types";
 
-const toWhatDigit = 7;
-
 function rounder (value : number, decimal : number){
     return parseFloat(value.toFixed(decimal))
 }
@@ -25,11 +23,12 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
     })
 
     const smallestPowerDifference = differenceBetweenUnitPowerArray.reduce((previousValue : number, currentValue : number) => {
-        if ((Math.abs(currentValue) < Math.abs(previousValue)) && currentValue + closestPower <= 0) {
-            return currentValue
-        } else {
-            return previousValue
-        }
+        if ((Math.abs(currentValue) < Math.abs(previousValue))) {
+            if ((closestPower >= 0 && currentValue + closestPower > 0) || (closestPower < 0 && currentValue + closestPower <= 0)) {
+                return currentValue
+            }
+        } 
+        return previousValue
     });
         
     const nearestUnitPower = smallestPowerDifference + closestPower;
