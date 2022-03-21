@@ -1,5 +1,6 @@
 const listOfNumber = Array.from({ length: 10 }, (_, i) => i.toString());
-const setOfValidCharacter = new Set(listOfNumber.concat(["."]));
+const setOfValidIntCharacter = new Set(listOfNumber);
+const setOfValidFloatCharacter = new Set(listOfNumber.concat(["."]));
 
 function countInArray(array: string[], checkedValue: string) {
     return array.reduce(
@@ -8,7 +9,7 @@ function countInArray(array: string[], checkedValue: string) {
     );
   }
 
-function isInputValid (e : any, givenValue : string) : boolean{
+export function isInputValidFloat (e : any, givenValue : string) : boolean{
     let inputValid = true;
     // Handle backspace
     if (e.nativeEvent.data === null && givenValue.length > 0) {
@@ -24,7 +25,7 @@ function isInputValid (e : any, givenValue : string) : boolean{
 
     if (
       e.nativeEvent.data !== null &&
-      !setOfValidCharacter.has(e.nativeEvent.data)
+      !setOfValidFloatCharacter.has(e.nativeEvent.data)
     ) {
       inputValid = false;
     }
@@ -32,4 +33,26 @@ function isInputValid (e : any, givenValue : string) : boolean{
     return inputValid;
 }
 
-export default isInputValid;
+export function isInputValidInt (e : any, givenValue : string) : boolean{
+    let inputValid = true;
+    // Handle backspace
+    if (e.nativeEvent.data === null && givenValue.length > 0) {
+      givenValue = givenValue.substring(0, givenValue.length);
+    }
+
+    if (
+        givenValue.length > 0 &&
+        countInArray(e.target.value.split(""), ".") > 0
+      ) {
+        inputValid = false;
+      }
+
+    if (
+      e.nativeEvent.data !== null &&
+      !setOfValidIntCharacter.has(e.nativeEvent.data)
+    ) {
+      inputValid = false;
+    }
+
+    return inputValid;
+}

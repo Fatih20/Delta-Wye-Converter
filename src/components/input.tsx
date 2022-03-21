@@ -10,7 +10,7 @@ import {
   unitPrefixInformation,
 } from "../utilities/types";
 
-import isInputValid from "../utilities/inputValidation";
+import { isInputValidFloat } from "../utilities/inputValidation";
 
 const Main = styled.div`
   align-items: center;
@@ -60,7 +60,7 @@ export default function ValidatedInput({
   function handleValueChange(e: any) {
     let newValue = e.target.value;
 
-    if (isInputValid(e, newValue)) {
+    if (isInputValidFloat(e, newValue)) {
       setStateOfChangingDtW();
       if (newValue.length > 0) {
         console.log(newValue);

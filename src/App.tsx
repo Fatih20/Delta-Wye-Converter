@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GlobalTransition } from "./GlobalComponent";
 import MainConversion from "./components/main";
 import Header from "./components/header";
+import ControlPanel from "./components/controlPanel";
 import DecimalPlaceContextProvider from "./context/decimalPlace";
 
 const Main = styled.div`
@@ -19,6 +20,7 @@ function App() {
       <Main>
         <DecimalPlaceContextProvider>
           <Header />
+          <ControlPanel />
           <MainConversion />
         </DecimalPlaceContextProvider>
       </Main>
