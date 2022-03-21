@@ -305,6 +305,7 @@ export default function MainConversion() {
 
   const conversionFunctionUsed =
     useConversionFunctionUsedContext()(convertingDtW);
+  const currentUnit = useUnitOfComponentUsedContext();
 
   function dependencyOfRecalculation() {
     let dependency: (string | number)[] = [decimalPlace];
@@ -403,6 +404,7 @@ export default function MainConversion() {
                 setRaUnitPrefix(selectedUnit)
               }
               currentUnitPrefix={raUnitPrefix}
+              currentUnit={currentUnit}
             />
             <ValidatedInput
               externalValue={rbValue}
@@ -412,6 +414,7 @@ export default function MainConversion() {
                 setRbUnitPrefix(selectedUnit)
               }
               currentUnitPrefix={rbUnitPrefix}
+              currentUnit={currentUnit}
             />
             <ValidatedInput
               externalValue={rcValue}
@@ -421,6 +424,7 @@ export default function MainConversion() {
                 setRcUnitPrefix(selectedUnit)
               }
               currentUnitPrefix={rcUnitPrefix}
+              currentUnit={currentUnit}
             />
           </DeltaInputContainer>
         </DeltaFieldContainer>
@@ -453,6 +457,7 @@ export default function MainConversion() {
                 setR1UnitPrefix(selectedUnit)
               }
               currentUnitPrefix={r1UnitPrefix}
+              currentUnit={currentUnit}
             />
             <ValidatedInput
               externalValue={r2Value}
@@ -462,6 +467,7 @@ export default function MainConversion() {
                 setR2UnitPrefix(selectedUnit)
               }
               currentUnitPrefix={r2UnitPrefix}
+              currentUnit={currentUnit}
             />
             <ValidatedInput
               externalValue={r3Value}
@@ -471,6 +477,7 @@ export default function MainConversion() {
                 setR3UnitPrefix(selectedUnit)
               }
               currentUnitPrefix={r3UnitPrefix}
+              currentUnit={currentUnit}
             />
           </WyeInputContainer>
         </WyeFieldContainer>

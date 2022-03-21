@@ -8,6 +8,7 @@ import {
   unitLongPrefixArray,
   unitLongPrefix,
   unitPrefixInformation,
+  unitOfComponentUsedType,
 } from "../utilities/types";
 
 import { isInputValidFloat } from "../utilities/inputValidation";
@@ -50,12 +51,14 @@ export default function ValidatedInput({
   setStateOfChangingDtW,
   setStateOfUnitPrefix,
   currentUnitPrefix,
+  currentUnit,
 }: {
   externalValue: inputConnectedVariable;
   setExternalValue: (arg0: inputConnectedVariable) => void;
   setStateOfChangingDtW: () => void;
   setStateOfUnitPrefix: (arg0: unitLongPrefix) => void;
   currentUnitPrefix: unitLongPrefix;
+  currentUnit: unitOfComponentUsedType;
 }) {
   function handleValueChange(e: any) {
     let newValue = e.target.value;
@@ -87,22 +90,10 @@ export default function ValidatedInput({
       />
       <StyledSelect value={currentUnitPrefix} onChange={handleUnitChange}>
         {unitLongPrefixArray.map((prefix) => {
-          // if (prefix === defaultUnitPrefix) {
-          //   return (
-          //     <StyledOption value={prefix} selected>
-          //       {unitPrefixInformation(prefix)[1]} &Omega;
-          //     </StyledOption>
-          //   );
-          // } else {
-          //   return (
-          //     <StyledOption value={prefix}>
-          //       {unitPrefixInformation(prefix)[1]}&Omega;
-          //     </StyledOption>
-          //   );
-          // }
           return (
             <StyledOption value={prefix}>
-              {unitPrefixInformation(prefix)[1]}&Omega;
+              {unitPrefixInformation(prefix)[1]}
+              {`${currentUnit}`}
             </StyledOption>
           );
         })}
