@@ -50,6 +50,10 @@ interface IWyeInputContainer {
   isWye: boolean;
 }
 
+interface ICircuitImage {
+  dimmed: boolean;
+}
+
 const Main = styled.div`
   align-items: center;
   box-sizing: border-box;
@@ -286,11 +290,28 @@ const SVGContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
   width: 100%;
   & * {
     width: 100%;
   }
   /* border: solid 1px white; */
+`;
+
+const CircuitImage = styled.img<ICircuitImage>`
+  filter: brightness(
+    ${({ dimmed }: { dimmed: boolean }) => (dimmed ? "0.5" : "1")}
+  );
+`;
+
+const Overlay = styled.div`
+  background-color: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
 `;
 
 export default function MainConversion() {
@@ -321,6 +342,28 @@ export default function MainConversion() {
 
   const currentUnit = useUnitOfComponentUsedContext();
   const componentUsed = useComponentUsedContext();
+
+  function blurTheImage(isDeltaImage: boolean) {
+    if (convertingDtW) {
+      if (
+        (raValue === "" || rbValue === "" || rcValue === "") &&
+        !isDeltaImage
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if (
+        (r1Value === "" || r2Value === "" || r3Value === "") &&
+        isDeltaImage
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 
   function dependencyOfRecalculation() {
     let dependency: (string | number)[] = [
@@ -415,6 +458,13 @@ export default function MainConversion() {
         setR1UnitPrefix(adjustedR1Unit);
         setR2UnitPrefix(adjustedR2Unit);
         setR3UnitPrefix(adjustedR3Unit);
+      } else {
+        setR1Value("");
+        setR2Value("");
+        setR3Value("");
+        setR1UnitPrefix("none");
+        setR2UnitPrefix("none");
+        setR3UnitPrefix("none");
       }
     } else {
       if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
@@ -436,6 +486,13 @@ export default function MainConversion() {
         setRaUnitPrefix(adjustedRaUnit);
         setRbUnitPrefix(adjustedRbUnit);
         setRcUnitPrefix(adjustedRcUnit);
+      } else {
+        setRaValue("");
+        setRbValue("");
+        setRcValue("");
+        setRaUnitPrefix("none");
+        setRbUnitPrefix("none");
+        setRcUnitPrefix("none");
       }
     }
   }, dependencyOfRecalculation());
@@ -452,10 +509,12 @@ export default function MainConversion() {
         </NetworkTypeChooser>
         <DeltaFieldContainer>
           <SVGContainer>
-            <img
+            <CircuitImage
               src={deltaImageUsed}
               alt={`3 resistors arranged in ${isDelta ? "delta" : "pi"}`}
+              dimmed={blurTheImage(true)}
             />
+            {/* <Overlay /> */}
           </SVGContainer>
           <DeltaInputContainer isDelta={isDelta}>
             <ValidatedInput
@@ -505,9 +564,10 @@ export default function MainConversion() {
         </NetworkTypeChooser>
         <WyeFieldContainer>
           <SVGContainer>
-            <img
+            <CircuitImage
               src={wyeImageUsed}
               alt={`3 resistors arranged in ${isWye ? "wye" : "tee"}`}
+              dimmed={blurTheImage(false)}
             />
           </SVGContainer>
           <WyeInputContainer isWye={isWye}>
