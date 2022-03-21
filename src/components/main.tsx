@@ -4,6 +4,8 @@ import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
 
+import { useDecimalPlaceContext } from "../context/decimalPlace";
+
 import {
   inputConnectedVariable,
   completePrefix,
@@ -289,6 +291,7 @@ const SVGContainer = styled.div`
 
 export default function MainConversion() {
   const [convertingDtW, setConvertingDtW] = useState(true);
+  const decimalPlace = useDecimalPlaceContext();
 
   const [raValue, setRaValue] = useState("" as inputConnectedVariable);
   const [rbValue, setRbValue] = useState("" as inputConnectedVariable);
@@ -320,7 +323,8 @@ export default function MainConversion() {
               rbValue,
               rbUnitPrefix,
               rcValue,
-              rcUnitPrefix
+              rcUnitPrefix,
+              decimalPlace
             );
 
           console.log(r1, r2, r3);
@@ -340,7 +344,8 @@ export default function MainConversion() {
               r2Value,
               r3UnitPrefix,
               r3Value,
-              r3UnitPrefix
+              r3UnitPrefix,
+              decimalPlace
             );
 
           console.log(ra, rb, rc);
