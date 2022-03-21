@@ -37,7 +37,7 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
     });
         
     const nearestUnitPower = smallestPowerDifference + closestPower;
-    const newUnitPowerCompatibleValue = newValue * (10 ** (-smallestPowerDifference));
+    const newUnitPowerCompatibleValue = rounder(newValue * (10 ** (-smallestPowerDifference)), toWhatDigit);
     const nearestUnitPowerUnit = unitPowerInformation(nearestUnitPower)[0];
 
     if (nearestUnitPowerUnit === "Not Found"){
@@ -54,9 +54,9 @@ function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number
     const convertedRcValue = rc * 10 ** unitPrefixInformation(rcUnitPrefix)[0];
 
     const resistorSum = convertedRaValue+convertedRbValue+convertedRcValue;
-    const r1Raw = rounder((convertedRaValue*convertedRbValue)/resistorSum, toWhatDigit)
-    const r2Raw = rounder((convertedRaValue*convertedRcValue)/resistorSum, toWhatDigit)
-    const r3Raw = rounder((convertedRbValue*convertedRcValue)/resistorSum, toWhatDigit)
+    const r1Raw = (convertedRaValue*convertedRbValue)/resistorSum;
+    const r2Raw = (convertedRaValue*convertedRcValue)/resistorSum;
+    const r3Raw = (convertedRbValue*convertedRcValue)/resistorSum;
 
     const [r1, adjustedR1Unit] = properUnitConverter(r1Raw, "none");
     const [r2, adjustedR2Unit] = properUnitConverter(r2Raw, "none");
@@ -72,9 +72,9 @@ function wyeToDeltaConverter(r1:number, r1UnitPrefix : unitLongPrefix, r2:number
     const convertedR3Value = r3 * 10 ** unitPrefixInformation(r3UnitPrefix)[0];
     
     const resistorProductSum = convertedR1Value*convertedR2Value+convertedR2Value*convertedR3Value+convertedR3Value*convertedR1Value;
-    const raRaw = rounder(resistorProductSum/(convertedR3Value), toWhatDigit);
-    const rbRaw = rounder(resistorProductSum/(convertedR2Value), toWhatDigit);
-    const rcRaw = rounder(resistorProductSum/(convertedR1Value), toWhatDigit);
+    const raRaw = resistorProductSum/(convertedR3Value);
+    const rbRaw = resistorProductSum/(convertedR2Value);
+    const rcRaw = resistorProductSum/(convertedR1Value);
 
     const [ra, adjustedRaUnit] = properUnitConverter(raRaw, "none");
     const [rb, adjustedRbUnit] = properUnitConverter(rbRaw, "none");
