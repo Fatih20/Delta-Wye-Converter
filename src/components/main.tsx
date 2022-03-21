@@ -4,7 +4,15 @@ import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
 
-import { inputConnectedVariable } from "../utilities/types";
+import {
+  inputConnectedVariable,
+  completePrefix,
+  unitCompletePrefix,
+  unitShortPrefix,
+  unitLongPrefix,
+  unitPrefix,
+  unitPrefixInformation,
+} from "../utilities/types";
 import ValidatedInput from "./input";
 
 import { VanillaButton } from "../GlobalComponent";
@@ -17,6 +25,7 @@ import piImage from "../images/PiCompressed.svg";
 import {
   deltaToWyeConverter,
   wyeToDeltaConverter,
+  properUnitConverter,
 } from "../utilities/conversionLogic";
 
 interface IArrowContainer {
@@ -214,15 +223,15 @@ const PiInputArrangement = css`
 const DeltaInputContainer = styled(InputContainer)<IDeltaInputContainer>`
   ${({ isDelta }) => (isDelta ? DeltaInputArrangement : PiInputArrangement)};
 
-  & input:nth-child(1) {
+  & *:nth-child(1) {
     grid-area: ra;
   }
 
-  & input:nth-child(2) {
+  & *:nth-child(2) {
     grid-area: rb;
   }
 
-  & input:nth-child(3) {
+  & *:nth-child(3) {
     grid-area: rc;
   }
 
@@ -253,15 +262,15 @@ const TeeInputArrangement = css`
 
 const WyeInputContainer = styled(InputContainer)<IWyeInputContainer>`
   ${({ isWye }) => (isWye ? WyeInputArrangement : TeeInputArrangement)};
-  & input:nth-child(1) {
+  & *:nth-child(1) {
     grid-area: r1;
   }
 
-  & input:nth-child(2) {
+  & *:nth-child(2) {
     grid-area: r2;
   }
 
-  & input:nth-child(3) {
+  & *:nth-child(3) {
     grid-area: r3;
   }
 `;
@@ -289,6 +298,14 @@ export default function MainConversion() {
   const [r2Value, setR2Value] = useState("" as inputConnectedVariable);
   const [r3Value, setR3Value] = useState("" as inputConnectedVariable);
 
+  const [raUnitPrefix, setRaUnitPrefix] = useState("none" as unitLongPrefix);
+  const [rbUnitPrefix, setRbUnitPrefix] = useState("none" as unitLongPrefix);
+  const [rcUnitPrefix, setRcUnitPrefix] = useState("none" as unitLongPrefix);
+
+  const [r1UnitPrefix, setR1UnitPrefix] = useState("none" as unitLongPrefix);
+  const [r2UnitPrefix, setR2UnitPrefix] = useState("none" as unitLongPrefix);
+  const [r3UnitPrefix, setR3UnitPrefix] = useState("none" as unitLongPrefix);
+
   const [isWye, setIsWye] = useState(true);
   const [isDelta, setIsDelta] = useState(true);
 
@@ -296,21 +313,49 @@ export default function MainConversion() {
     () => {
       if (convertingDtW) {
         if (!(raValue === "" || rbValue === "" || rcValue === "")) {
-          const { r1, r2, r3 } = deltaToWyeConverter(raValue, rbValue, rcValue);
+          const { r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit } =
+            deltaToWyeConverter(
+              raValue,
+              raUnitPrefix,
+              rbValue,
+              rbUnitPrefix,
+              rcValue,
+              rcUnitPrefix
+            );
+
+          console.log(r1, r2, r3);
           setR1Value(r1);
           setR2Value(r2);
           setR3Value(r3);
+          setR1UnitPrefix(adjustedR1Unit);
+          setR2UnitPrefix(adjustedR2Unit);
+          setR3UnitPrefix(adjustedR3Unit);
         }
       } else {
         if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
-          const { ra, rb, rc } = wyeToDeltaConverter(r1Value, r2Value, r3Value);
+          const { ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit } =
+            wyeToDeltaConverter(
+              r1Value,
+              r1UnitPrefix,
+              r2Value,
+              r3UnitPrefix,
+              r3Value,
+              r3UnitPrefix
+            );
+
+          console.log(ra, rb, rc);
           setRaValue(ra);
           setRbValue(rb);
           setRcValue(rc);
+          setRaUnitPrefix(adjustedRaUnit);
+          setRbUnitPrefix(adjustedRbUnit);
+          setRcUnitPrefix(adjustedRcUnit);
         }
       }
     },
-    convertingDtW ? [raValue, rbValue, rcValue] : [r1Value, r2Value, r3Value]
+    convertingDtW
+      ? [raValue, rbValue, rcValue, raUnitPrefix, rbUnitPrefix, rcUnitPrefix]
+      : [r1Value, r2Value, r3Value, r1UnitPrefix, r2UnitPrefix, r3UnitPrefix]
   );
   return (
     <Main>
@@ -335,16 +380,28 @@ export default function MainConversion() {
               externalValue={raValue}
               setExternalValue={setRaValue}
               setStateOfChangingDtW={() => setConvertingDtW(true)}
+              setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
+                setRaUnitPrefix(selectedUnit)
+              }
+              currentUnitPrefix={raUnitPrefix}
             />
             <ValidatedInput
               externalValue={rbValue}
               setExternalValue={setRbValue}
               setStateOfChangingDtW={() => setConvertingDtW(true)}
+              setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
+                setRbUnitPrefix(selectedUnit)
+              }
+              currentUnitPrefix={rbUnitPrefix}
             />
             <ValidatedInput
               externalValue={rcValue}
               setExternalValue={setRcValue}
               setStateOfChangingDtW={() => setConvertingDtW(true)}
+              setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
+                setRcUnitPrefix(selectedUnit)
+              }
+              currentUnitPrefix={rcUnitPrefix}
             />
           </DeltaInputContainer>
         </DeltaFieldContainer>
@@ -373,16 +430,28 @@ export default function MainConversion() {
               externalValue={r1Value}
               setExternalValue={setR1Value}
               setStateOfChangingDtW={() => setConvertingDtW(false)}
+              setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
+                setR1UnitPrefix(selectedUnit)
+              }
+              currentUnitPrefix={r1UnitPrefix}
             />
             <ValidatedInput
               externalValue={r2Value}
               setExternalValue={setR2Value}
               setStateOfChangingDtW={() => setConvertingDtW(false)}
+              setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
+                setR2UnitPrefix(selectedUnit)
+              }
+              currentUnitPrefix={r2UnitPrefix}
             />
             <ValidatedInput
               externalValue={r3Value}
               setExternalValue={setR3Value}
               setStateOfChangingDtW={() => setConvertingDtW(false)}
+              setStateOfUnitPrefix={(selectedUnit: unitLongPrefix) =>
+                setR3UnitPrefix(selectedUnit)
+              }
+              currentUnitPrefix={r3UnitPrefix}
             />
           </WyeInputContainer>
         </WyeFieldContainer>
