@@ -14,14 +14,10 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
     const newValue = parseFloat(newValueRaw);
     const closestPower = parseInt(closestPowerRaw);
 
-    // let differenceBetweenUnitPowerArray : [number, unitPowerMultiplier][] = [];
     let differenceBetweenUnitPowerArray : number[] = [];
 
-
     unitPowerMultiplierArray.forEach((unitPower) => {
-        // const differenceBetweenUnitPower = Math.abs(unitPower - closestPower);
         const differenceBetweenUnitPower = unitPower - closestPower;
-        // differenceBetweenUnitPowerArray.push([differenceBetweenUnitPower, unitPower]);
         differenceBetweenUnitPowerArray.push(differenceBetweenUnitPower);
         if (differenceBetweenUnitPower === 0) {
             return [newValue, unitPower];
@@ -29,7 +25,7 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
     })
 
     const smallestPowerDifference = differenceBetweenUnitPowerArray.reduce((previousValue : number, currentValue : number) => {
-        if (Math.abs(currentValue) < Math.abs(previousValue)) {
+        if ((Math.abs(currentValue) < Math.abs(previousValue)) && currentValue + closestPower < 0) {
             return currentValue
         } else {
             return previousValue
@@ -46,6 +42,8 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
         return [newUnitPowerCompatibleValue ,  nearestUnitPowerUnit]
     }
 }
+
+console.log(properUnitConverter(0.00009, "none"))
 
 function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number, rbUnitPrefix: unitLongPrefix, rc:number, rcUnitPrefix: unitLongPrefix) {
 
