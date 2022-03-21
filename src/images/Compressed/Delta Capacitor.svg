@@ -1,0 +1,135 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="115"
+      height="95"
+      version="1.1"
+    >
+      <defs>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="0"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M0 0l10 5-10 5z"></path>
+        </marker>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="10"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M10 0L0 5l10 5z"></path>
+        </marker>
+      </defs>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M82.857 47.134l8.057-13.955 12.494-22.158H60.485"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M53.006.021v10H9.883L22.928 33.23l.26.45 7.25 12.557-8.66 5 1.5 2.598 19.052-11-1.5-2.598-8.66 5-7.252-12.556-.254-.442-11.361-20.217h39.703v10h3v-22h-3zm6 0v22h3v-10h39.69L90.044 32.684l-7.248 12.552-8.66-5-1.5 2.598 19.052 11 1.5-2.598-8.66-5 7.252-12.562L105.12 10.02H62.006v-10h-3zM43.83 45.431l-19.053 11 1.5 2.598 8.66-4.998 7.247 12.553 15.32 27.135 15.28-27.135 7.245-12.553 8.66 4.998 1.5-2.597-19.052-11-1.5 2.6 8.66 5-7.252 12.56-13.543 24.053-13.58-24.053-7.254-12.56 8.662-5-1.5-2.6z"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M79.923 52.215l-8.01 13.873-14.411 25.594-14.45-25.594-8.009-13.873"
+        color="#000"
+      ></path>
+      <path
+        fill="#ff8c82"
+        stroke="none"
+        strokeWidth="1"
+        d="M100.115 11.02a3.293 3.296 0 106.586.002 3.293 3.296 0 00-6.586-.002"
+      ></path>
+      <path
+        fill="#d1ff82"
+        stroke="none"
+        strokeWidth="1"
+        d="M54.207 91.68a3.293 3.296 0 106.586.002 3.293 3.296 0 00-6.586-.001"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M92.439 52.535l-19.052-11"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M70.387 46.731l19.052 11"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M22.527 52.535l19.052-11"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M44.58 46.731l-19.053 11"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M54.505 22.02V.023"
+        color="#000"
+      ></path>
+      <path
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M54.619 11.022H11.592l12.204 21.712.257.445 8.057 13.955"
+        color="#000"
+      ></path>
+      <path
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M60.505.022V22.02"
+        color="#000"
+      ></path>
+      <path
+        fill="#8cd5ff"
+        stroke="none"
+        strokeWidth="1"
+        d="M8.3 11.02a3.293 3.296 0 106.585.002 3.293 3.296 0 00-6.586-.002"
+      ></path>
+    </svg>

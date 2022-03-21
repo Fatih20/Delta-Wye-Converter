@@ -1,0 +1,65 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="115"
+      height="95"
+      version="1.1"
+    >
+      <defs>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="0"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M0 0l10 5-10 5z"></path>
+        </marker>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="10"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M10 0L0 5l10 5z"></path>
+        </marker>
+      </defs>
+      <path
+        fill="none"
+        stroke="#fafafa"
+        strokeDasharray="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="4"
+        strokeWidth="2"
+        d="M103.498 35.955l-5.046 2.153 10.089 4.307-10.089 4.307 10.089 4.306-10.089 4.307 10.089 4.307-5.047 2.153v27.41l-91.993.001v-27.41l5.046-2.154L6.46 55.335l10.088-4.306L6.46 46.722l10.088-4.307L6.46 38.108l5.046-2.153-.004-27.41 33.07-.003 2.165 5.044 4.307-10.088 4.307 10.088 4.306-10.088 4.307 10.088L68.27 3.498l2.159 5.046h33.066z"
+      ></path>
+      <path
+        fill="#d1ff82"
+        stroke="none"
+        strokeWidth="1"
+        d="M8.202 89.205a3.3 3.296 0 106.599.001 3.3 3.296 0 00-6.599-.001"
+      ></path>
+      <path
+        fill="#d1ff82"
+        stroke="none"
+        strokeWidth="1"
+        d="M100.195 89.205a3.3 3.296 0 106.599.001 3.3 3.296 0 00-6.599-.001"
+      ></path>
+      <path
+        fill="#8cd5ff"
+        stroke="none"
+        strokeWidth="1"
+        d="M8.202 8.543a3.3 3.296 0 106.599.001 3.3 3.296 0 00-6.599-.001"
+      ></path>
+      <path
+        fill="#ff8c82"
+        stroke="none"
+        strokeWidth="1"
+        d="M100.195 8.543a3.3 3.296 0 106.599.001 3.3 3.296 0 00-6.599-.001"
+      ></path>
+    </svg>
