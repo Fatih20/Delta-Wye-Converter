@@ -9,7 +9,11 @@ import {
 import { isInputValidInt } from "../utilities/inputValidation";
 
 const Main = styled.div`
+  align-items: center;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1em;
 
   & input::-webkit-outer-spin-button,
   & input::-webkit-inner-spin-button {
@@ -33,6 +37,12 @@ const DecimalInput = styled.input`
   filter: drop-shadow(0 3px 5px #0000007a);
   outline: none;
   padding: 0.25em;
+  text-align: center;
+  width: 30px;
+`;
+
+const DecimalInline = styled.p`
+  line-height: 2;
   text-align: center;
 `;
 
@@ -60,7 +70,7 @@ export default function ControlPanel() {
   }, [decimalPlace]);
   return (
     <Main>
-      <p>
+      <DecimalInline>
         Precise to{" "}
         <DecimalInput
           type="number"
@@ -69,7 +79,7 @@ export default function ControlPanel() {
           onChange={handleDecimalChange}
         />{" "}
         decimal places
-      </p>
+      </DecimalInline>
     </Main>
   );
 }

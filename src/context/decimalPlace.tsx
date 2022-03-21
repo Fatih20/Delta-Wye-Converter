@@ -17,7 +17,7 @@ export default function DecimalPlaceContextProvider({
 }: {
   children: ReactChild | ReactChild[];
 }) {
-  const [decimalPlace, setDecimalPlace] = useState(6);
+  const [decimalPlace, setDecimalPlace] = useState(3);
   return (
     <DecimalPlaceContext.Provider value={decimalPlace}>
       <SetDecimalPlaceContext.Provider
