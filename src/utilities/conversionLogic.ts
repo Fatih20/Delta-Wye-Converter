@@ -1,12 +1,10 @@
 import { unitLongPrefix, unitPrefixInformation, unitPowerMultiplierArray, unitPowerInformation, unitPowerMultiplier, unitShortPrefix } from "./types";
 
-const toWhatDigit = 7;
-
 function rounder (value : number, decimal : number){
     return parseFloat(value.toFixed(decimal))
 }
 
-export function properUnitConverter (givenResistance : number, givenResistanceUnit : unitLongPrefix) : [number, unitLongPrefix]{
+export function properUnitConverter (givenResistance : number, givenResistanceUnit : unitLongPrefix, toWhatDigit:number) : [number, unitLongPrefix]{
     const currentOrderOfMagnitude = unitPrefixInformation(givenResistanceUnit)[0];
     const actualValue = givenResistance * 10 ** currentOrderOfMagnitude
 
@@ -25,11 +23,12 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
     })
 
     const smallestPowerDifference = differenceBetweenUnitPowerArray.reduce((previousValue : number, currentValue : number) => {
-        if ((Math.abs(currentValue) < Math.abs(previousValue)) && currentValue + closestPower <= 0) {
-            return currentValue
-        } else {
-            return previousValue
-        }
+        if ((Math.abs(currentValue) < Math.abs(previousValue))) {
+            if ((closestPower > 0 && currentValue + closestPower > 0) || (closestPower <= 0 && currentValue + closestPower <= 0)) {
+                return currentValue
+            }
+        } 
+        return previousValue
     });
         
     const nearestUnitPower = smallestPowerDifference + closestPower;
@@ -43,9 +42,9 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
     }
 }
 
-console.log(properUnitConverter(0.00009, "none"))
+// console.log(properUnitConverter(0.00009, "none"))
 
-function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number, rbUnitPrefix: unitLongPrefix, rc:number, rcUnitPrefix: unitLongPrefix) {
+function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number, rbUnitPrefix: unitLongPrefix, rc:number, rcUnitPrefix: unitLongPrefix, toWhatDigit: number) {
 
     const convertedRaValue = ra * 10 ** unitPrefixInformation(raUnitPrefix)[0];
     const convertedRbValue = rb * 10 ** unitPrefixInformation(rbUnitPrefix)[0];
@@ -56,14 +55,14 @@ function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number
     const r2Raw = (convertedRaValue*convertedRcValue)/resistorSum;
     const r3Raw = (convertedRbValue*convertedRcValue)/resistorSum;
 
-    const [r1, adjustedR1Unit] = properUnitConverter(r1Raw, "none");
-    const [r2, adjustedR2Unit] = properUnitConverter(r2Raw, "none");
-    const [r3, adjustedR3Unit] = properUnitConverter(r3Raw, "none");
+    const [r1, adjustedR1Unit] = properUnitConverter(r1Raw, "none", toWhatDigit);
+    const [r2, adjustedR2Unit] = properUnitConverter(r2Raw, "none", toWhatDigit);
+    const [r3, adjustedR3Unit] = properUnitConverter(r3Raw, "none", toWhatDigit);
 
     return {r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit}
 }
 
-function wyeToDeltaConverter(r1:number, r1UnitPrefix : unitLongPrefix, r2:number, r2UnitPrefix: unitLongPrefix, r3:number, r3UnitPrefix: unitLongPrefix) {
+function wyeToDeltaConverter(r1:number, r1UnitPrefix : unitLongPrefix, r2:number, r2UnitPrefix: unitLongPrefix, r3:number, r3UnitPrefix: unitLongPrefix, toWhatDigit:number) {
     
     const convertedR1Value = r1 * 10 ** unitPrefixInformation(r1UnitPrefix)[0];
     const convertedR2Value = r2 * 10 ** unitPrefixInformation(r2UnitPrefix)[0];
@@ -74,9 +73,9 @@ function wyeToDeltaConverter(r1:number, r1UnitPrefix : unitLongPrefix, r2:number
     const rbRaw = resistorProductSum/(convertedR2Value);
     const rcRaw = resistorProductSum/(convertedR1Value);
 
-    const [ra, adjustedRaUnit] = properUnitConverter(raRaw, "none");
-    const [rb, adjustedRbUnit] = properUnitConverter(rbRaw, "none");
-    const [rc, adjustedRcUnit] = properUnitConverter(rcRaw, "none");
+    const [ra, adjustedRaUnit] = properUnitConverter(raRaw, "none", toWhatDigit);
+    const [rb, adjustedRbUnit] = properUnitConverter(rbRaw, "none", toWhatDigit);
+    const [rc, adjustedRcUnit] = properUnitConverter(rcRaw, "none", toWhatDigit);
 
     return {ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit}
 }

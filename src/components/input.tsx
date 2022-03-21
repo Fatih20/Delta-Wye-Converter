@@ -10,6 +10,8 @@ import {
   unitPrefixInformation,
 } from "../utilities/types";
 
+import { isInputValidFloat } from "../utilities/inputValidation";
+
 const Main = styled.div`
   align-items: center;
   display: flex;
@@ -42,16 +44,6 @@ const StyledSelect = styled.select`
 
 const StyledOption = styled.option``;
 
-function countInArray(array: string[], checkedValue: string) {
-  return array.reduce(
-    (count, element) => count + (element === checkedValue ? 1 : 0),
-    0
-  );
-}
-
-const listOfNumber = Array.from({ length: 10 }, (_, i) => i.toString());
-const setOfValidCharacter = new Set(listOfNumber.concat(["."]));
-
 export default function ValidatedInput({
   externalValue,
   setExternalValue,
@@ -67,27 +59,8 @@ export default function ValidatedInput({
 }) {
   function handleValueChange(e: any) {
     let newValue = e.target.value;
-    let inputValid = true;
-    // Handle backspace
-    if (e.nativeEvent.data === null && newValue.length > 0) {
-      newValue = newValue.substring(0, newValue.length);
-    }
 
-    if (
-      newValue.length > 0 &&
-      countInArray(e.target.value.split(""), ".") > 1
-    ) {
-      inputValid = false;
-    }
-
-    if (
-      e.nativeEvent.data !== null &&
-      !setOfValidCharacter.has(e.nativeEvent.data)
-    ) {
-      inputValid = false;
-    }
-
-    if (inputValid) {
+    if (isInputValidFloat(e, newValue)) {
       setStateOfChangingDtW();
       if (newValue.length > 0) {
         console.log(newValue);
