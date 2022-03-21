@@ -5,6 +5,7 @@ import MainConversion from "./components/main";
 import Header from "./components/header";
 import ControlPanel from "./components/controlPanel";
 import DecimalPlaceContextProvider from "./context/decimalPlace";
+import ComponentUsedContextProvider from "./context/componentUsed";
 
 const Main = styled.div`
   color: white;
@@ -18,11 +19,13 @@ function App() {
     <>
       <GlobalTransition />
       <Main>
-        <DecimalPlaceContextProvider>
-          <Header />
-          <ControlPanel />
-          <MainConversion />
-        </DecimalPlaceContextProvider>
+        <ComponentUsedContextProvider>
+          <DecimalPlaceContextProvider>
+            <Header />
+            <ControlPanel />
+            <MainConversion />
+          </DecimalPlaceContextProvider>
+        </ComponentUsedContextProvider>
       </Main>
     </>
   );

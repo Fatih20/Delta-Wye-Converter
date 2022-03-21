@@ -87,4 +87,23 @@ export const completePrefixArray : unitCompletePrefix[] = [
 
 ]
 
+export type componentUsedType = "R" | "L" | "C";
+export type unitOfComponentUsedType = "H" | "\u03A9" | "F";
+
+export function unitOfComponentInformation (usedComponent : componentUsedType) : unitOfComponentUsedType {
+    if (usedComponent === "R"){
+        return "\u03A9"
+    } else if (usedComponent === "C"){
+        return "F"
+    } else if (usedComponent === "L"){
+        return "H"
+    } else {
+        return "H"
+    }
+}
+
 export type completePrefix = typeof completePrefixArray[number];
+
+export type  conversionFunctionOutputType = [number, unitLongPrefix, number, unitLongPrefix, number, unitLongPrefix];
+
+export type conversionFunctionType = (arg0:number, arg1 : unitLongPrefix, arg2:number, arg3: unitLongPrefix, arg4:number, arg5: unitLongPrefix, arg6: number) => conversionFunctionOutputType;

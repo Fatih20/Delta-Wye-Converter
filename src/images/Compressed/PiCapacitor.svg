@@ -1,0 +1,76 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="115"
+      height="95"
+      version="1.1"
+    >
+      <defs>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="0"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M0 0l10 5-10 5z"></path>
+        </marker>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="10"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M10 0L0 5l10 5z"></path>
+        </marker>
+      </defs>
+      <path
+        
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M53.002 0v10l-8.443.002H10.5l.004 28.41v8.42h-10v3h22v-3h-10v-8.42l-.004-26.41h32.059L53.002 12v10h3V0z"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M59.002 0v22h3V12l18.492.002h22l.004 26.41-.002 8.42h-10v3h22v-3h-10l.002-8.42-.006-28.41H80.494L62.002 10V0z"
+        color="#000"
+      ></path>
+      <path
+        fill="#8cd5ff"
+        stroke="none"
+        strokeWidth="1"
+        d="M8.201 11a3.3 3.296 0 106.599.002 3.3 3.296 0 00-6.599-.001"
+      ></path>
+      <path
+        fill="#ff8c82"
+        stroke="none"
+        strokeWidth="1"
+        d="M100.195 11a3.3 3.296 0 106.598.002 3.3 3.296 0 00-6.598-.001"
+      ></path>
+      <path
+        
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M.504 52.832v3h10l-.004 8.422v28.41h93.994v-28.41l.002-8.422h10v-3h-22v3h10l-.002 8.42v26.412H12.5v-26.41l.004-8.422h10v-3z"
+        color="#000"
+      ></path>
+      <path
+        fill="#d1ff82"
+        stroke="none"
+        strokeWidth="1"
+        d="M100.195 91.662a3.3 3.296 0 106.598.002 3.3 3.296 0 00-6.598-.002"
+      ></path>
+      <path
+        fill="#d1ff82"
+        stroke="none"
+        strokeWidth="1"
+        d="M8.201 91.662a3.3 3.296 0 106.599.002 3.3 3.296 0 00-6.599-.002"
+      ></path>
+    </svg>

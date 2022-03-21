@@ -6,13 +6,23 @@ import {
   useSetDecimalPlaceContext,
 } from "../context/decimalPlace";
 
+import {
+  useComponentUsedContext,
+  useSetComponentUsedContext,
+} from "../context/componentUsed";
+
 import { isInputValidInt } from "../utilities/inputValidation";
 import { VanillaButton } from "../GlobalComponent";
+
+interface IComponentButton {
+  selected: boolean;
+}
 
 const Main = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   justify-content: center;
   padding: 0 1em;
 
@@ -55,14 +65,36 @@ const DecimalBox = styled.input`
   /* width: 50px; */
 `;
 
-const DecimalInline = styled.p`
-  line-height: 2;
-  text-align: center;
+const DecimalContainer = styled.div`
+  & p {
+    line-height: 2;
+    text-align: center;
+  }
+`;
+
+const ComponentChooserContainer = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+`;
+
+const ComponentButton = styled(VanillaButton)<IComponentButton>`
+  border: solid 1px #000000;
+  border-radius: 2px;
+  background-color: #333333;
+  color: ${({ selected }: { selected: boolean }) =>
+    selected ? "white" : "#abacae"};
+  filter: drop-shadow(0 3px 5px #0000007a);
+  padding: 5px 0;
+  width: 75px;
 `;
 
 export default function ControlPanel() {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
+  const componentUsed = useComponentUsedContext();
+  const setComponentUsed = useSetComponentUsedContext();
 
   function handleDecimalChange(e: any) {
     const newValue = e.target.value;
@@ -91,28 +123,47 @@ export default function ControlPanel() {
     }
   }
 
-  useEffect(() => {
-    console.log(decimalPlace);
-  }, [decimalPlace]);
   return (
     <Main>
-      <DecimalInline>Precise to</DecimalInline>
-      <DecimalInput>
-        <IncrementerButton onClick={() => incrementer(false)}>
-          -
-        </IncrementerButton>
-        <DecimalBox
-          type="number"
-          step="1"
-          value={decimalPlace}
-          onChange={handleDecimalChange}
-          readOnly
-        />{" "}
-        <IncrementerButton onClick={() => incrementer(true)}>
-          +
-        </IncrementerButton>
-      </DecimalInput>
-      <DecimalInline>decimal places</DecimalInline>
+      <ComponentChooserContainer>
+        <ComponentButton
+          onClick={() => setComponentUsed("R")}
+          selected={componentUsed === "R"}
+        >
+          Resistor
+        </ComponentButton>
+        <ComponentButton
+          onClick={() => setComponentUsed("L")}
+          selected={componentUsed === "L"}
+        >
+          Inductor
+        </ComponentButton>
+        <ComponentButton
+          onClick={() => setComponentUsed("C")}
+          selected={componentUsed === "C"}
+        >
+          Capacitor
+        </ComponentButton>
+      </ComponentChooserContainer>
+      <DecimalContainer>
+        <p>Precise to</p>
+        <DecimalInput>
+          <IncrementerButton onClick={() => incrementer(false)}>
+            -
+          </IncrementerButton>
+          <DecimalBox
+            type="number"
+            step="1"
+            value={decimalPlace}
+            onChange={handleDecimalChange}
+            readOnly
+          />{" "}
+          <IncrementerButton onClick={() => incrementer(true)}>
+            +
+          </IncrementerButton>
+        </DecimalInput>
+        <p>decimal places</p>
+      </DecimalContainer>
     </Main>
   );
 }

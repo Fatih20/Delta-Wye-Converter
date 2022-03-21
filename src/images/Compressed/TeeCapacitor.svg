@@ -1,0 +1,198 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="115"
+      height="95"
+      version="1.1"
+    >
+      <defs>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="0"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M0 0l10 5-10 5z"></path>
+        </marker>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="10"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M10 0L0 5l10 5z"></path>
+        </marker>
+      </defs>
+      <path
+        fill="none"
+        stroke="#fafafa"
+        strokeDasharray="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="4"
+        strokeWidth="2"
+        d="M50.964 11.026h13.072"
+      ></path>
+      <path
+        fill="#fafafa"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+        d="M60.608 11.024a3.109 3.109 0 11-6.218.004 3.109 3.109 0 016.218-.004"
+      ></path>
+      <g fillRule="evenodd" color="#000">
+        <path
+          
+          fill="#000"
+          fillOpacity="0"
+          strokeWidth="3"
+          d="M34.981 22.025V.026"
+        ></path>
+        <path
+          
+          fill="#fafafa"
+          d="M33.48.025v10l-8.482-.002-13.672.006.002 2 13.67-.006 8.482.002v10h3v-22h-3z"
+        ></path>
+      </g>
+      <g>
+        <path
+          
+          fill="#000"
+          fillOpacity="0"
+          fillRule="evenodd"
+          strokeWidth="2"
+          d="M35.095 11.026l-10.096-.002-13.672.006"
+          color="#000"
+        ></path>
+      </g>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M40.981.026v21.999"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M39.48.025v22h3v-10H56.5V38.46l.002 10.1h2l-.002-10.1V12.025h14.02v10h3v-22h-3v10H42.48v-10h-3z"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M74.019 22.025V.026"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M74.132 11.026H57.5"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M80.019.026v21.999"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M78.52.025v22h3v-10l8.482-.002 13.67.006.002-2-13.672-.006-8.482.002v-10h-3z"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M80 11.026L90 11.024l13.672.006"
+        color="#000"
+      ></path>
+      <path
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        stroke="#fafafa"
+        strokeDasharray="none"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="4"
+        strokeOpacity="1"
+        strokeWidth="3"
+        d="M46.502 48.446h21.999"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M57.501 48.559l-.002-10.1V11.027H40.962"
+        color="#000"
+      ></path>
+      <path
+        
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="3"
+        d="M68.501 54.446H46.502"
+        color="#000"
+      ></path>
+      <path
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M46.502 52.945v3h10l.002 8.487-.004 27.433h2l.004-27.433-.002-8.487h10v-3h-22z"
+        color="#000"
+      ></path>
+      <path
+        fill="#000"
+        fillOpacity="0"
+        fillRule="evenodd"
+        strokeWidth="2"
+        d="M57.501 54.426l.003 10.005-.004 27.434"
+        color="#000"
+      ></path>
+      <path
+        fill="#ff8c82"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+        d="M106.781 11.031a3.109 3.109 0 11-6.217.004 3.109 3.109 0 016.217-.004"
+      ></path>
+      <path
+        fill="#8cd5ff"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+        d="M14.434 11.031a3.109 3.109 0 11-6.218.004 3.109 3.109 0 016.218-.004"
+      ></path>
+      <path
+        fill="#d1ff82"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+        d="M60.607 91.864a3.109 3.109 0 11-6.217.003 3.109 3.109 0 016.217-.003"
+      ></path>
+    </svg>
