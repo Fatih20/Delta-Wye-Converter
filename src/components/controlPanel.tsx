@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   useDecimalPlaceContext,
@@ -23,10 +23,6 @@ const Main = styled.div`
   }
 `;
 
-const DecimalBox = styled.div`
-  display: flex;
-`;
-
 const DecimalInput = styled.input`
   background-color: #333333;
   border: solid 2px #333333;
@@ -46,28 +42,34 @@ export default function ControlPanel() {
 
   function handleDecimalChange(e: any) {
     const newValue = e.target.value;
+    console.log(newValue);
     if (isInputValidInt(e, newValue)) {
       if (newValue === "") {
         setDecimalPlace(0);
+      } else if (newValue > 7) {
+        setDecimalPlace(7);
       } else {
+        console.log(parseInt(newValue));
         setDecimalPlace(parseInt(newValue));
       }
     }
   }
+
+  useEffect(() => {
+    console.log(decimalPlace);
+  }, [decimalPlace]);
   return (
     <Main>
-      <DecimalBox>
-        <p>
-          Precise to{" "}
-          <DecimalInput
-            type="number"
-            step="1"
-            value={decimalPlace}
-            onChange={handleDecimalChange}
-          />{" "}
-          decimal places
-        </p>
-      </DecimalBox>
+      <p>
+        Precise to{" "}
+        <DecimalInput
+          type="number"
+          step="1"
+          value={String(decimalPlace).replace(/^0+/, "")}
+          onChange={handleDecimalChange}
+        />{" "}
+        decimal places
+      </p>
     </Main>
   );
 }
