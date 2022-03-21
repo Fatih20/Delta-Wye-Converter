@@ -87,4 +87,19 @@ export const completePrefixArray : unitCompletePrefix[] = [
 
 ]
 
+export type componentUsedType = "R" | "L" | "C";
+export type unitOfComponentUsedType = "H" | "\u03A9" | "C";
+
+export function unitOfComponentInformation (usedComponent : componentUsedType) : unitOfComponentUsedType {
+    if (usedComponent === "R"){
+        return "\u03A9"
+    } else if (usedComponent === "C"){
+        return "C"
+    } else if (usedComponent === "L"){
+        return "H"
+    } else {
+        return "H"
+    }
+}
+
 export type completePrefix = typeof completePrefixArray[number];
