@@ -4,7 +4,6 @@ import {
   componentUsedType,
   unitOfComponentUsedType,
   unitOfComponentInformation,
-  conversionFunctionType,
 } from "../utilities/types";
 
 import { conversionFunction } from "../utilities/conversionLogic";
@@ -36,10 +35,6 @@ export function useUnitOfComponentUsedContext() {
   return useContext(UnitOfComponentUsedContext);
 }
 
-export function useConversionFunctionUsedContext() {
-  return useContext(ConversionFunctionUsedContext);
-}
-
 export default function ComponentUsedContextProvider({
   children,
 }: {
@@ -56,9 +51,6 @@ export default function ComponentUsedContextProvider({
             setComponentUsed(newComponentUsed)
           }
         >
-          <ConversionFunctionUsedContext.Provider
-            value={(DtW: boolean) => conversionFunction(componentUsed, DtW)}
-          ></ConversionFunctionUsedContext.Provider>
           {children}
         </SetComponentUsedContext.Provider>
       </UnitOfComponentUsedContext.Provider>

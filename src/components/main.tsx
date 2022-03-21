@@ -12,7 +12,6 @@ import ValidatedInput from "./input";
 import { VanillaButton } from "../GlobalComponent";
 
 import {
-  useConversionFunctionUsedContext,
   useUnitOfComponentUsedContext,
   useComponentUsedContext,
 } from "../context/componentUsed";
