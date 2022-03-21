@@ -4,7 +4,7 @@
    height="95"
    version="1.1"
    id="svg66"
-   sodipodi:docname="Pi Capacitor.svg"
+   sodipodi:docname="Pi Capacitor (copy).svg"
    inkscape:version="1.1.1 (1:1.1+202109281943+c3084ef5ed)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -19,9 +19,9 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="9.3055252"
-     inkscape:cx="72.053966"
-     inkscape:cy="54.537491"
+     inkscape:zoom="6.58"
+     inkscape:cx="59.954408"
+     inkscape:cy="55.091186"
      inkscape:window-width="2560"
      inkscape:window-height="1379"
      inkscape:window-x="0"
@@ -62,17 +62,9 @@
     </marker>
   </defs>
   <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:2;-inkscape-stroke:none"
-     d="m 54.61568,11.019763 -10.056557,0.0015 -33.058525,1.55e-4 0.0041,27.410538 -9.33e-4,10.033681"
-     id="path4546" />
-  <path
      id="path4548"
      style="color:#000000;fill:#fafafa;fill-rule:evenodd;-inkscape-stroke:none"
      d="M 53.001953 0.01953125 L 53.001953 10.019531 L 44.558594 10.021484 L 10.5 10.021484 L 10.503906 38.431641 L 10.503906 46.851562 L 0.50390625 46.851562 L 0.50390625 49.851562 L 22.503906 49.851562 L 22.503906 46.851562 L 12.503906 46.851562 L 12.503906 38.431641 L 12.5 12.021484 L 44.558594 12.021484 L 53.001953 12.019531 L 53.001953 22.019531 L 56.001953 22.019531 L 56.001953 0.01953125 L 53.001953 0.01953125 z " />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:2;-inkscape-stroke:none"
-     d="m 103.49518,48.46564 0.002,-10.033833 -0.004,-27.410541 -22.999791,-3e-6 -20.011169,-0.0015"
-     id="path4552" />
   <path
      id="path4554"
      style="color:#000000;fill:#fafafa;fill-rule:evenodd;-inkscape-stroke:none"
@@ -124,37 +116,9 @@
      id="path862"
      style="fill:#ff8c82;stroke:none;stroke-width:1" />
   <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:3;-inkscape-stroke:none"
-     d="m 54.5022,22.018705 c 0,-21.998934 0,-21.998934 0,-21.998934"
-     id="path4558" />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:3;-inkscape-stroke:none"
-     d="M 60.50221,0.019769 V 22.018704"
-     id="path4564" />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:3;-inkscape-stroke:none"
-     d="m 92.496241,48.35216 c 21.998939,0 21.998939,0 21.998939,0"
-     id="path4570" />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:3;-inkscape-stroke:none"
-     d="M 114.49518,54.35217 H 92.496242"
-     id="path4576" />
-  <path
      id="path4578"
      style="color:#000000;fill:#fafafa;fill-rule:evenodd;-inkscape-stroke:none"
      d="M 0.50390625 52.851562 L 0.50390625 55.851562 L 10.503906 55.851562 L 10.5 64.273438 L 10.5 92.683594 L 104.49414 92.683594 L 104.49414 64.273438 L 104.49609 55.851562 L 114.49609 55.851562 L 114.49609 52.851562 L 92.496094 52.851562 L 92.496094 55.851562 L 102.49609 55.851562 L 102.49414 64.271484 L 102.49414 90.683594 L 12.5 90.683594 L 12.5 64.273438 L 12.503906 55.851562 L 22.503906 55.851562 L 22.503906 52.851562 L 0.50390625 52.851562 z " />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:2;-inkscape-stroke:none"
-     d="m 103.49518,54.33268 -0.002,9.939849 v 27.410536 l -91.993082,1.52e-4 V 64.27268 l 0.0032,-9.94"
-     id="path4582" />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:3;-inkscape-stroke:none"
-     d="m 0.504823,48.35216 c 21.998934,0 21.998934,0 21.998934,0"
-     id="path4588" />
-  <path
-     style="color:#000000;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke-width:3;-inkscape-stroke:none"
-     d="M 22.503759,54.35217 H 0.504824"
-     id="path4594" />
   <path
      d="m 100.19456,91.681889 a 3.2991201,3.2964266 0 1 0 6.59824,0.0014 3.2991201,3.2964266 0 0 0 -6.59824,-0.0014"
      id="path2542"
