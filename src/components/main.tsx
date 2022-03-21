@@ -312,56 +312,76 @@ export default function MainConversion() {
   const [isWye, setIsWye] = useState(true);
   const [isDelta, setIsDelta] = useState(true);
 
-  useEffect(
-    () => {
-      if (convertingDtW) {
-        if (!(raValue === "" || rbValue === "" || rcValue === "")) {
-          const { r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit } =
-            deltaToWyeConverter(
-              raValue,
-              raUnitPrefix,
-              rbValue,
-              rbUnitPrefix,
-              rcValue,
-              rcUnitPrefix,
-              decimalPlace
-            );
+  function dependencyOfRecalculation() {
+    let dependency: (string | number)[] = [decimalPlace];
 
-          console.log(r1, r2, r3);
-          setR1Value(r1);
-          setR2Value(r2);
-          setR3Value(r3);
-          setR1UnitPrefix(adjustedR1Unit);
-          setR2UnitPrefix(adjustedR2Unit);
-          setR3UnitPrefix(adjustedR3Unit);
-        }
-      } else {
-        if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
-          const { ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit } =
-            wyeToDeltaConverter(
-              r1Value,
-              r1UnitPrefix,
-              r2Value,
-              r3UnitPrefix,
-              r3Value,
-              r3UnitPrefix,
-              decimalPlace
-            );
+    if (convertingDtW) {
+      dependency = dependency.concat([
+        raValue,
+        rbValue,
+        rcValue,
+        raUnitPrefix,
+        rbUnitPrefix,
+        rcUnitPrefix,
+      ]);
+    } else {
+      dependency = dependency.concat([
+        r1Value,
+        r2Value,
+        r3Value,
+        r1UnitPrefix,
+        r2UnitPrefix,
+        r3UnitPrefix,
+      ]);
+    }
 
-          console.log(ra, rb, rc);
-          setRaValue(ra);
-          setRbValue(rb);
-          setRcValue(rc);
-          setRaUnitPrefix(adjustedRaUnit);
-          setRbUnitPrefix(adjustedRbUnit);
-          setRcUnitPrefix(adjustedRcUnit);
-        }
+    return dependency;
+  }
+  useEffect(() => {
+    if (convertingDtW) {
+      if (!(raValue === "" || rbValue === "" || rcValue === "")) {
+        const { r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit } =
+          deltaToWyeConverter(
+            raValue,
+            raUnitPrefix,
+            rbValue,
+            rbUnitPrefix,
+            rcValue,
+            rcUnitPrefix,
+            decimalPlace
+          );
+
+        console.log(r1, r2, r3);
+        setR1Value(r1);
+        setR2Value(r2);
+        setR3Value(r3);
+        setR1UnitPrefix(adjustedR1Unit);
+        setR2UnitPrefix(adjustedR2Unit);
+        setR3UnitPrefix(adjustedR3Unit);
       }
-    },
-    convertingDtW
-      ? [raValue, rbValue, rcValue, raUnitPrefix, rbUnitPrefix, rcUnitPrefix]
-      : [r1Value, r2Value, r3Value, r1UnitPrefix, r2UnitPrefix, r3UnitPrefix]
-  );
+    } else {
+      if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
+        const { ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit } =
+          wyeToDeltaConverter(
+            r1Value,
+            r1UnitPrefix,
+            r2Value,
+            r3UnitPrefix,
+            r3Value,
+            r3UnitPrefix,
+            decimalPlace
+          );
+
+        console.log(ra, rb, rc);
+        setRaValue(ra);
+        setRbValue(rb);
+        setRcValue(rc);
+        setRaUnitPrefix(adjustedRaUnit);
+        setRbUnitPrefix(adjustedRbUnit);
+        setRcUnitPrefix(adjustedRcUnit);
+      }
+    }
+  }, dependencyOfRecalculation());
   return (
     <Main>
       <DeltaContainer>
