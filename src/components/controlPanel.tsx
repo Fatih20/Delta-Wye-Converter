@@ -22,6 +22,7 @@ const Main = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   justify-content: center;
   padding: 0 1em;
 
@@ -64,9 +65,11 @@ const DecimalBox = styled.input`
   /* width: 50px; */
 `;
 
-const DecimalInline = styled.p`
-  line-height: 2;
-  text-align: center;
+const DecimalContainer = styled.div`
+  & p {
+    line-height: 2;
+    text-align: center;
+  }
 `;
 
 const ComponentChooserContainer = styled.div`
@@ -80,7 +83,8 @@ const ComponentButton = styled(VanillaButton)<IComponentButton>`
   border: solid 1px #000000;
   border-radius: 2px;
   background-color: #333333;
-  color: ${({ selected }) => (selected ? "white" : "#abacae")};
+  color: ${({ selected }: { selected: boolean }) =>
+    selected ? "white" : "#abacae"};
   filter: drop-shadow(0 3px 5px #0000007a);
   padding: 5px 0;
   width: 75px;
@@ -141,23 +145,25 @@ export default function ControlPanel() {
           Capacitor
         </ComponentButton>
       </ComponentChooserContainer>
-      <DecimalInline>Precise to</DecimalInline>
-      <DecimalInput>
-        <IncrementerButton onClick={() => incrementer(false)}>
-          -
-        </IncrementerButton>
-        <DecimalBox
-          type="number"
-          step="1"
-          value={decimalPlace}
-          onChange={handleDecimalChange}
-          readOnly
-        />{" "}
-        <IncrementerButton onClick={() => incrementer(true)}>
-          +
-        </IncrementerButton>
-      </DecimalInput>
-      <DecimalInline>decimal places</DecimalInline>
+      <DecimalContainer>
+        <p>Precise to</p>
+        <DecimalInput>
+          <IncrementerButton onClick={() => incrementer(false)}>
+            -
+          </IncrementerButton>
+          <DecimalBox
+            type="number"
+            step="1"
+            value={decimalPlace}
+            onChange={handleDecimalChange}
+            readOnly
+          />{" "}
+          <IncrementerButton onClick={() => incrementer(true)}>
+            +
+          </IncrementerButton>
+        </DecimalInput>
+        <p>decimal places</p>
+      </DecimalContainer>
     </Main>
   );
 }
