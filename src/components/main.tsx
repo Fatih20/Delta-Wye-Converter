@@ -16,6 +16,8 @@ import {
   useComponentUsedContext,
 } from "../context/componentUsed";
 
+import { useInitialStateContext } from "../context/initialState";
+
 import { conversionFunction } from "../utilities/conversionLogic";
 
 import deltaImage from "../images/Compressed/Delta.svg";
@@ -340,6 +342,8 @@ export default function MainConversion() {
   const [deltaImageUsed, setDeltaImageUsed] = useState(deltaImage);
   const [wyeImageUsed, setWyeImageUsed] = useState(wyeImage);
 
+  const [isInitialState, setIsInitialState] = useInitialStateContext();
+
   const currentUnit = useUnitOfComponentUsedContext();
   const componentUsed = useComponentUsedContext();
 
@@ -363,6 +367,24 @@ export default function MainConversion() {
         return false;
       }
     }
+  }
+
+  function resetToInitial() {
+    setConvertingDtW(true);
+
+    setR1Value("");
+    setR2Value("");
+    setR3Value("");
+    setR1UnitPrefix("none");
+    setR2UnitPrefix("none");
+    setR3UnitPrefix("none");
+
+    setRaValue("");
+    setRbValue("");
+    setRcValue("");
+    setRaUnitPrefix("none");
+    setRbUnitPrefix("none");
+    setRcUnitPrefix("none");
   }
 
   function dependencyOfRecalculation() {
@@ -434,6 +456,7 @@ export default function MainConversion() {
   }, [isWye, isDelta, componentUsed]);
 
   useEffect(() => {
+    setIsInitialState(false);
     const conversionFunctionUsed = conversionFunction(
       componentUsed,
       convertingDtW
@@ -496,6 +519,13 @@ export default function MainConversion() {
       }
     }
   }, dependencyOfRecalculation());
+
+  useEffect(() => {
+    if (isInitialState) {
+      resetToInitial();
+    }
+  }, [isInitialState]);
+
   return (
     <Main>
       <DeltaContainer>

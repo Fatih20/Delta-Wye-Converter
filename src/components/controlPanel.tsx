@@ -11,6 +11,8 @@ import {
   useSetComponentUsedContext,
 } from "../context/componentUsed";
 
+import { useInitialStateContext } from "../context/initialState";
+
 import { isInputValidInt } from "../utilities/inputValidation";
 import { VanillaButton } from "../GlobalComponent";
 
@@ -90,11 +92,17 @@ const ComponentButton = styled(VanillaButton)<IComponentButton>`
   width: 75px;
 `;
 
+const ResetButton = styled(ComponentButton)`
+  padding: 5px 10px;
+  width: auto;
+`;
+
 export default function ControlPanel() {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
   const componentUsed = useComponentUsedContext();
   const setComponentUsed = useSetComponentUsedContext();
+  const [, setIsInitialState] = useInitialStateContext();
 
   function handleDecimalChange(e: any) {
     const newValue = e.target.value;
@@ -164,6 +172,9 @@ export default function ControlPanel() {
         </DecimalInput>
         <p>decimal places</p>
       </DecimalContainer>
+      <ResetButton selected={true} onClick={() => setIsInitialState(true)}>
+        Reset All Value
+      </ResetButton>
     </Main>
   );
 }
