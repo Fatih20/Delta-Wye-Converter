@@ -4,7 +4,10 @@ import {
   componentUsedType,
   unitOfComponentUsedType,
   unitOfComponentInformation,
+  conversionFunctionType,
 } from "../utilities/types";
+
+import { conversionFunction } from "../utilities/conversionLogic";
 
 const ComponentUsedContext = React.createContext("R" as componentUsedType);
 const SetComponentUsedContext = React.createContext(
@@ -17,6 +20,10 @@ const UnitOfComponentUsedContext = React.createContext(
   "\u03A9" as unitOfComponentUsedType
 );
 
+const ConversionFunctionUsedContext = React.createContext((DtW: boolean) =>
+  conversionFunction("R", DtW)
+);
+
 export function useComponentUsedContext() {
   return useContext(ComponentUsedContext);
 }
@@ -27,6 +34,10 @@ export function useSetComponentUsedContext() {
 
 export function useUnitOfComponentUsedContext() {
   return useContext(UnitOfComponentUsedContext);
+}
+
+export function useConversionFunctionUsedContext() {
+  return useContext(ConversionFunctionUsedContext);
 }
 
 export default function ComponentUsedContextProvider({
@@ -45,6 +56,9 @@ export default function ComponentUsedContextProvider({
             setComponentUsed(newComponentUsed)
           }
         >
+          <ConversionFunctionUsedContext.Provider
+            value={(DtW: boolean) => conversionFunction(componentUsed, DtW)}
+          ></ConversionFunctionUsedContext.Provider>
           {children}
         </SetComponentUsedContext.Provider>
       </UnitOfComponentUsedContext.Provider>

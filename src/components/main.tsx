@@ -6,29 +6,20 @@ import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
 
 import { useDecimalPlaceContext } from "../context/decimalPlace";
 
-import {
-  inputConnectedVariable,
-  completePrefix,
-  unitCompletePrefix,
-  unitShortPrefix,
-  unitLongPrefix,
-  unitPrefix,
-  unitPrefixInformation,
-} from "../utilities/types";
+import { inputConnectedVariable, unitLongPrefix } from "../utilities/types";
 import ValidatedInput from "./input";
 
 import { VanillaButton } from "../GlobalComponent";
+
+import {
+  useConversionFunctionUsedContext,
+  useUnitOfComponentUsedContext,
+} from "../context/componentUsed";
 
 import deltaImage from "../images/DeltaCompressed.svg";
 import wyeImage from "../images/WyeCompressed.svg";
 import teeImage from "../images/TeeCompressed.svg";
 import piImage from "../images/PiCompressed.svg";
-
-import {
-  deltaToWyeConverter,
-  wyeToDeltaConverter,
-  properUnitConverter,
-} from "../utilities/conversionLogic";
 
 interface IArrowContainer {
   convertingDtW: boolean;
@@ -312,6 +303,9 @@ export default function MainConversion() {
   const [isWye, setIsWye] = useState(true);
   const [isDelta, setIsDelta] = useState(true);
 
+  const conversionFunctionUsed =
+    useConversionFunctionUsedContext()(convertingDtW);
+
   function dependencyOfRecalculation() {
     let dependency: (string | number)[] = [decimalPlace];
 
@@ -340,8 +334,8 @@ export default function MainConversion() {
   useEffect(() => {
     if (convertingDtW) {
       if (!(raValue === "" || rbValue === "" || rcValue === "")) {
-        const { r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit } =
-          deltaToWyeConverter(
+        const [r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit] =
+          conversionFunctionUsed(
             raValue,
             raUnitPrefix,
             rbValue,
@@ -361,8 +355,8 @@ export default function MainConversion() {
       }
     } else {
       if (!(r1Value === "" || r2Value === "" || r3Value === "")) {
-        const { ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit } =
-          wyeToDeltaConverter(
+        const [ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit] =
+          conversionFunctionUsed(
             r1Value,
             r1UnitPrefix,
             r2Value,

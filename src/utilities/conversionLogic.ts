@@ -1,4 +1,4 @@
-import { unitLongPrefix, unitPrefixInformation, unitPowerMultiplierArray, unitPowerInformation, unitPowerMultiplier, unitShortPrefix } from "./types";
+import { unitLongPrefix, unitPrefixInformation, unitPowerMultiplierArray, unitPowerInformation, unitPowerMultiplier, unitShortPrefix, componentUsedType, conversionFunctionType, conversionFunctionOutputType } from "./types";
 
 function rounder (value : number, decimal : number){
     return parseFloat(value.toFixed(decimal))
@@ -44,40 +44,63 @@ export function properUnitConverter (givenResistance : number, givenResistanceUn
 
 // console.log(properUnitConverter(0.00009, "none"))
 
-function deltaToWyeConverter(ra:number, raUnitPrefix : unitLongPrefix, rb:number, rbUnitPrefix: unitLongPrefix, rc:number, rcUnitPrefix: unitLongPrefix, toWhatDigit: number) {
+function deltaToWyeConverterC (partA:number, partAUnitPrefix : unitLongPrefix, partB:number, partBUnitPrefix: unitLongPrefix, partC:number, partCUnitPrefix: unitLongPrefix, toWhatDigit: number){
+    return [partA, partAUnitPrefix, partB, partBUnitPrefix, partC, partCUnitPrefix] as conversionFunctionOutputType;
+};
 
-    const convertedRaValue = ra * 10 ** unitPrefixInformation(raUnitPrefix)[0];
-    const convertedRbValue = rb * 10 ** unitPrefixInformation(rbUnitPrefix)[0];
-    const convertedRcValue = rc * 10 ** unitPrefixInformation(rcUnitPrefix)[0];
+function wyeToDeltaConverterC(part1:number, part1UnitPrefix : unitLongPrefix, part2:number, part2UnitPrefix: unitLongPrefix, part3:number, part3UnitPrefix: unitLongPrefix, toWhatDigit: number) {
+    return [part1, part1UnitPrefix, part2, part2UnitPrefix, part3, part3UnitPrefix] as conversionFunctionOutputType;
 
-    const resistorSum = convertedRaValue+convertedRbValue+convertedRcValue;
-    const r1Raw = (convertedRaValue*convertedRbValue)/resistorSum;
-    const r2Raw = (convertedRaValue*convertedRcValue)/resistorSum;
-    const r3Raw = (convertedRbValue*convertedRcValue)/resistorSum;
-
-    const [r1, adjustedR1Unit] = properUnitConverter(r1Raw, "none", toWhatDigit);
-    const [r2, adjustedR2Unit] = properUnitConverter(r2Raw, "none", toWhatDigit);
-    const [r3, adjustedR3Unit] = properUnitConverter(r3Raw, "none", toWhatDigit);
-
-    return {r1, adjustedR1Unit, r2, adjustedR2Unit, r3, adjustedR3Unit}
 }
 
-function wyeToDeltaConverter(r1:number, r1UnitPrefix : unitLongPrefix, r2:number, r2UnitPrefix: unitLongPrefix, r3:number, r3UnitPrefix: unitLongPrefix, toWhatDigit:number) {
-    
-    const convertedR1Value = r1 * 10 ** unitPrefixInformation(r1UnitPrefix)[0];
-    const convertedR2Value = r2 * 10 ** unitPrefixInformation(r2UnitPrefix)[0];
-    const convertedR3Value = r3 * 10 ** unitPrefixInformation(r3UnitPrefix)[0];
-    
-    const resistorProductSum = convertedR1Value*convertedR2Value+convertedR2Value*convertedR3Value+convertedR3Value*convertedR1Value;
-    const raRaw = resistorProductSum/(convertedR3Value);
-    const rbRaw = resistorProductSum/(convertedR2Value);
-    const rcRaw = resistorProductSum/(convertedR1Value);
+function deltaToWyeConverterRL(partA:number, partAUnitPrefix : unitLongPrefix, partB:number, partBUnitPrefix: unitLongPrefix, partC:number, partCUnitPrefix: unitLongPrefix, toWhatDigit: number) {
 
-    const [ra, adjustedRaUnit] = properUnitConverter(raRaw, "none", toWhatDigit);
-    const [rb, adjustedRbUnit] = properUnitConverter(rbRaw, "none", toWhatDigit);
-    const [rc, adjustedRcUnit] = properUnitConverter(rcRaw, "none", toWhatDigit);
+    const convertedPartAValue = partA * 10 ** unitPrefixInformation(partAUnitPrefix)[0];
+    const convertedPartBValue = partB * 10 ** unitPrefixInformation(partBUnitPrefix)[0];
+    const convertedPartCValue = partC * 10 ** unitPrefixInformation(partCUnitPrefix)[0];
 
-    return {ra, adjustedRaUnit, rb, adjustedRbUnit, rc, adjustedRcUnit}
+    const resistorSum = convertedPartAValue+convertedPartBValue+convertedPartCValue;
+    const part1Raw = (convertedPartAValue*convertedPartBValue)/resistorSum;
+    const part2Raw = (convertedPartAValue*convertedPartCValue)/resistorSum;
+    const part3Raw = (convertedPartBValue*convertedPartCValue)/resistorSum;
+
+    const [part1, adjustedPart1Unit] = properUnitConverter(part1Raw, "none", toWhatDigit);
+    const [part2, adjustedPart2Unit] = properUnitConverter(part2Raw, "none", toWhatDigit);
+    const [part3, adjustedPart3Unit] = properUnitConverter(part3Raw, "none", toWhatDigit);
+
+    return [part1, adjustedPart1Unit, part2, adjustedPart2Unit, part3, adjustedPart3Unit] as conversionFunctionOutputType;
 }
 
-export {deltaToWyeConverter, wyeToDeltaConverter};
+function wyeToDeltaConverterRL(part1:number, part1UnitPrefix : unitLongPrefix, part2:number, part2UnitPrefix: unitLongPrefix, part3:number, part3UnitPrefix: unitLongPrefix, toWhatDigit: number) {
+    
+    const convertedPart1Value = part1 * 10 ** unitPrefixInformation(part1UnitPrefix)[0];
+    const convertedPart2Value = part2 * 10 ** unitPrefixInformation(part2UnitPrefix)[0];
+    const convertedPart3Value = part3 * 10 ** unitPrefixInformation(part3UnitPrefix)[0];
+    
+    const resistorProductSum = convertedPart1Value*convertedPart2Value+convertedPart2Value*convertedPart3Value+convertedPart3Value*convertedPart1Value;
+    const partARaw = resistorProductSum/(convertedPart3Value);
+    const partBRaw = resistorProductSum/(convertedPart2Value);
+    const partCRaw = resistorProductSum/(convertedPart1Value);
+
+    const [partA, adjustedPartAUnit] = properUnitConverter(partARaw, "none", toWhatDigit);
+    const [partB, adjustedPartBUnit] = properUnitConverter(partBRaw, "none", toWhatDigit);
+    const [partC, adjustedPartCUnit] = properUnitConverter(partCRaw, "none", toWhatDigit);
+
+    return [partA, adjustedPartAUnit, partB, adjustedPartBUnit, partC, adjustedPartCUnit] as conversionFunctionOutputType;
+}
+
+export function conversionFunction (componentUsed : componentUsedType, DeltaToWyeConversion : boolean ) : conversionFunctionType{
+    if (DeltaToWyeConversion){
+        if (componentUsed === "C"){
+            return deltaToWyeConverterC
+        } else {
+            return deltaToWyeConverterRL;
+        }
+    } else {
+        if (componentUsed === "C"){
+            return wyeToDeltaConverterC;
+        } else {
+            return wyeToDeltaConverterRL;
+        }
+    }
+}

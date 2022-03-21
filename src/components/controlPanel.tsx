@@ -9,7 +9,6 @@ import {
 import {
   useComponentUsedContext,
   useSetComponentUsedContext,
-  useUnitOfComponentUsedContext,
 } from "../context/componentUsed";
 
 import { isInputValidInt } from "../utilities/inputValidation";
@@ -91,7 +90,6 @@ export default function ControlPanel() {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
   const componentUsed = useComponentUsedContext();
-  const unitOfComponentUsed = useUnitOfComponentUsedContext();
   const setComponentUsed = useSetComponentUsedContext();
 
   function handleDecimalChange(e: any) {
