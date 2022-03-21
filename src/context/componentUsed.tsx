@@ -1,6 +1,10 @@
 import React, { useState, useContext, ReactChild } from "react";
 
-import { componentUsedType } from "../utilities/types";
+import {
+  componentUsedType,
+  unitOfComponentUsedType,
+  unitOfComponentInformation,
+} from "../utilities/types";
 
 const ComponentUsedContext = React.createContext("R" as componentUsedType);
 const SetComponentUsedContext = React.createContext(
@@ -8,12 +12,21 @@ const SetComponentUsedContext = React.createContext(
     return;
   }
 );
+
+const UnitOfComponentUsedContext = React.createContext(
+  "\u03A9" as unitOfComponentUsedType
+);
+
 export function useComponentUsedContext() {
   return useContext(ComponentUsedContext);
 }
 
 export function useSetComponentUsedContext() {
   return useContext(SetComponentUsedContext);
+}
+
+export function useUnitOfComponentUsedContext() {
+  return useContext(UnitOfComponentUsedContext);
 }
 
 export default function ComponentUsedContextProvider({
@@ -24,13 +37,17 @@ export default function ComponentUsedContextProvider({
   const [componentUsed, setComponentUsed] = useState("R" as componentUsedType);
   return (
     <ComponentUsedContext.Provider value={componentUsed}>
-      <SetComponentUsedContext.Provider
-        value={(newComponentUsed: componentUsedType) =>
-          setComponentUsed(newComponentUsed)
-        }
+      <UnitOfComponentUsedContext.Provider
+        value={unitOfComponentInformation(componentUsed)}
       >
-        {children}
-      </SetComponentUsedContext.Provider>
+        <SetComponentUsedContext.Provider
+          value={(newComponentUsed: componentUsedType) =>
+            setComponentUsed(newComponentUsed)
+          }
+        >
+          {children}
+        </SetComponentUsedContext.Provider>
+      </UnitOfComponentUsedContext.Provider>
     </ComponentUsedContext.Provider>
   );
 }
