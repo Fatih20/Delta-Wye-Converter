@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Delta-Wye-Converter/static/css/main.abed585f.css",
+    "main.js": "/Delta-Wye-Converter/static/js/main.22d381a2.js",
+    "static/media/TeeCapacitor.svg": "/Delta-Wye-Converter/static/media/TeeCapacitor.b84261892464779c77dce5de81197126.svg",
+    "static/media/TeeInductor.svg": "/Delta-Wye-Converter/static/media/TeeInductor.2db855ef5255f3b2e7da3afb1a3eff7c.svg",
+    "static/media/WyeInductor.svg": "/Delta-Wye-Converter/static/media/WyeInductor.e08892b885bdaae72b99ef7438d7cbb4.svg",
+    "static/media/DeltaInductor.svg": "/Delta-Wye-Converter/static/media/DeltaInductor.affd55aab14bf4e298ae367f5642ff79.svg",
+    "static/media/PiInductor.svg": "/Delta-Wye-Converter/static/media/PiInductor.a252b709cfa70c3fc7e1a3642fd769b7.svg",
+    "static/media/Wye.svg": "/Delta-Wye-Converter/static/media/Wye.4e236edf464635fa7f07ddd9157a186f.svg",
+    "static/media/Tee.svg": "/Delta-Wye-Converter/static/media/Tee.3beea75731e462baa4ae7da501790e56.svg",
+    "static/media/Delta.svg": "/Delta-Wye-Converter/static/media/Delta.49b9de66fcd8fe90c161ced5f0c1a124.svg",
+    "static/media/Pi.svg": "/Delta-Wye-Converter/static/media/Pi.cc0b762ea423779c508e37f338765b31.svg",
+    "static/media/WyeCapacitor.svg": "/Delta-Wye-Converter/static/media/WyeCapacitor.8b0f1b50ecfe8b0aadeb62c3c24e29ac.svg",
+    "static/media/PiCapacitor.svg": "/Delta-Wye-Converter/static/media/PiCapacitor.c98b6a0d726f440aa2e45a8a32c8c585.svg",
+    "static/media/DeltaCapacitor.svg": "/Delta-Wye-Converter/static/media/DeltaCapacitor.2af44ac271d71d44707ac06a7342433d.svg",
+    "index.html": "/Delta-Wye-Converter/index.html",
+    "main.abed585f.css.map": "/Delta-Wye-Converter/static/css/main.abed585f.css.map",
+    "main.22d381a2.js.map": "/Delta-Wye-Converter/static/js/main.22d381a2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abed585f.css",
+    "static/js/main.22d381a2.js"
+  ]
+}

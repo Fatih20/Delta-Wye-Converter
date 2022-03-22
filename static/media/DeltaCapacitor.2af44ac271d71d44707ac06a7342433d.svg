@@ -1,0 +1,55 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="115"
+      height="95"
+      version="1.1"
+    >
+      <defs>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="0"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M0 0l10 5-10 5z"></path>
+        </marker>
+        <marker
+          markerHeight="3"
+          markerUnits="strokeWidth"
+          markerWidth="4"
+          orient="auto"
+          refX="10"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <path d="M10 0L0 5l10 5z"></path>
+        </marker>
+      </defs>
+      <path
+        fill="#fafafa"
+        fillRule="evenodd"
+        d="M53.006 0v10H9.883l13.045 23.207.26.451 7.25 12.557-8.66 5 1.5 2.597 19.052-11-1.5-2.597-8.66 5-7.252-12.557-.254-.441L13.303 12h39.703v10h3V0zm6 0v22h3V12h39.69L90.044 32.662l-7.248 12.553-8.66-5-1.5 2.597 19.052 11 1.5-2.597-8.66-5 7.252-12.563L105.12 10H62.006V0zM43.83 45.41l-19.053 11 1.5 2.598 8.66-4.998 7.247 12.553 15.32 27.134 15.28-27.135 7.245-12.552 8.66 4.998 1.5-2.598-19.052-11-1.5 2.6 8.66 5-7.252 12.56-13.543 24.053-13.58-24.053-7.254-12.56 8.662-5z"
+        color="#000"
+      ></path>
+      <path
+        fill="#ff8c82"
+        stroke="none"
+        strokeWidth="1"
+        d="M100.115 10.999a3.293 3.296 0 106.586.001 3.293 3.296 0 00-6.586-.001"
+      ></path>
+      <path
+        fill="#d1ff82"
+        stroke="none"
+        strokeWidth="1"
+        d="M54.207 91.66a3.293 3.296 0 106.586 0 3.293 3.296 0 00-6.586 0"
+      ></path>
+      <path
+        fill="#8cd5ff"
+        stroke="none"
+        strokeWidth="1"
+        d="M8.3 10.999a3.293 3.296 0 106.585.001A3.293 3.296 0 008.299 11"
+      ></path>
+    </svg>
