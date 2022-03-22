@@ -13,6 +13,20 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2em;
+  position: relative;
+`;
+
+const ControlPanelContainer = styled.div`
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  bottom: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
 `;
 
 function App() {
@@ -23,6 +37,9 @@ function App() {
         <InitialStateContextProvider>
           <ComponentUsedContextProvider>
             <DecimalPlaceContextProvider>
+              <ControlPanelContainer>
+                <p>Bruh</p>
+              </ControlPanelContainer>
               <Header />
               <ControlPanel />
               <MainConversion />
