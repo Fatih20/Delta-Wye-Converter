@@ -14,11 +14,13 @@ interface IControlPanelContainer {
 }
 
 const Main = styled.div`
+  box-sizing: border-box;
   color: white;
   display: flex;
   flex-direction: column;
   gap: 2em;
   position: relative;
+  padding-bottom: 20px;
 `;
 
 const ClosedControlPanel = css`
@@ -72,7 +74,7 @@ const ControlPanelButton = styled(VanillaButton)`
 `;
 
 function App() {
-  const [controlPanelOpen, setControlPanelOpen] = useState(true);
+  const [controlPanelOpen, setControlPanelOpen] = useState(false);
   return (
     <>
       <GlobalTransition />
