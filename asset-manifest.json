@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Delta-Wye-Converter/static/css/main.abed585f.css",
-    "main.js": "/Delta-Wye-Converter/static/js/main.0d4c0858.js",
+    "main.js": "/Delta-Wye-Converter/static/js/main.021e1cca.js",
     "static/media/TeeCapacitor.svg": "/Delta-Wye-Converter/static/media/TeeCapacitor.b84261892464779c77dce5de81197126.svg",
     "static/media/TeeInductor.svg": "/Delta-Wye-Converter/static/media/TeeInductor.2db855ef5255f3b2e7da3afb1a3eff7c.svg",
     "static/media/WyeInductor.svg": "/Delta-Wye-Converter/static/media/WyeInductor.e08892b885bdaae72b99ef7438d7cbb4.svg",
@@ -16,10 +16,10 @@
     "static/media/DeltaCapacitor.svg": "/Delta-Wye-Converter/static/media/DeltaCapacitor.2af44ac271d71d44707ac06a7342433d.svg",
     "index.html": "/Delta-Wye-Converter/index.html",
     "main.abed585f.css.map": "/Delta-Wye-Converter/static/css/main.abed585f.css.map",
-    "main.0d4c0858.js.map": "/Delta-Wye-Converter/static/js/main.0d4c0858.js.map"
+    "main.021e1cca.js.map": "/Delta-Wye-Converter/static/js/main.021e1cca.js.map"
   },
   "entrypoints": [
     "static/css/main.abed585f.css",
-    "static/js/main.0d4c0858.js"
+    "static/js/main.021e1cca.js"
   ]
 }
