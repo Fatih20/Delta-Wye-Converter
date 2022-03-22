@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useState, useEffect } from "react";
 
 import {
@@ -16,16 +16,36 @@ import { useInitialStateContext } from "../context/initialState";
 import { isInputValidInt } from "../utilities/inputValidation";
 import { VanillaButton } from "../GlobalComponent";
 
+interface IMain {
+  show: boolean;
+  isForMobile: boolean;
+}
+
 interface IComponentButton {
   selected: boolean;
 }
 
-const Main = styled.div`
+interface IMainForMobile {
+  show: boolean;
+}
+
+const MainNotForMobile = css`
+  display: none;
+  @media (min-width: 900px) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+const MainForMobile = css<IMainForMobile>`
+  display: ${({ show }) => (show ? "flex" : "none")};
+`;
+
+const Main = styled.div<IMain>`
   align-items: center;
-  display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 0 1em;
 
   & input::-webkit-outer-spin-button,
@@ -37,6 +57,8 @@ const Main = styled.div`
   & input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  ${({ isForMobile }) => (isForMobile ? MainForMobile : MainNotForMobile)}
 `;
 
 const DecimalInput = styled.div`
@@ -97,7 +119,13 @@ const ResetButton = styled(ComponentButton)`
   width: auto;
 `;
 
-export default function ControlPanel() {
+export default function ControlPanel({
+  mobileControlPanelOpen,
+  isForMobile,
+}: {
+  mobileControlPanelOpen: boolean;
+  isForMobile: boolean;
+}) {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
   const componentUsed = useComponentUsedContext();
@@ -131,8 +159,14 @@ export default function ControlPanel() {
     }
   }
 
+  function isPanelShown() {
+    if (!isForMobile) {
+      return true;
+    }
+  }
+
   return (
-    <Main>
+    <Main show={mobileControlPanelOpen} isForMobile={isForMobile}>
       <ComponentChooserContainer>
         <ComponentButton
           onClick={() => setComponentUsed("R")}
