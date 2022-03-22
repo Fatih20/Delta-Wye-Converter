@@ -16,16 +16,20 @@ import { useInitialStateContext } from "../context/initialState";
 import { isInputValidInt } from "../utilities/inputValidation";
 import { VanillaButton } from "../GlobalComponent";
 
+interface IMain {
+  show: boolean;
+}
+
 interface IComponentButton {
   selected: boolean;
 }
 
-const Main = styled.div`
+const Main = styled.div<IMain>`
   align-items: center;
-  display: flex;
+  display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
   gap: 10px;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 0 1em;
 
   & input::-webkit-outer-spin-button,
@@ -36,6 +40,10 @@ const Main = styled.div`
 
   & input[type="number"] {
     -moz-appearance: textfield;
+  }
+
+  @media (min-width: 900px) {
+    justify-content: center;
   }
 `;
 
@@ -97,7 +105,7 @@ const ResetButton = styled(ComponentButton)`
   width: auto;
 `;
 
-export default function ControlPanel() {
+export default function ControlPanel({ show }: { show: boolean }) {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
   const componentUsed = useComponentUsedContext();
@@ -132,7 +140,7 @@ export default function ControlPanel() {
   }
 
   return (
-    <Main>
+    <Main show={show}>
       <ComponentChooserContainer>
         <ComponentButton
           onClick={() => setComponentUsed("R")}

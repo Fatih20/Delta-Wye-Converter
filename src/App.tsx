@@ -27,16 +27,23 @@ const ClosedControlPanel = css`
 `;
 
 const OpenControlPanel = css`
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.75) 50%,
+    rgba(0, 0, 0, 0.9)
+  );
   pointer-events: auto;
 `;
 
 const ControlPanelContainer = styled.div<IControlPanelContainer>`
+  align-items: center;
   box-sizing: border-box;
   color: white;
   display: flex;
   height: 100vh;
-  justify-content: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 20px;
   left: 0;
   padding: 1em;
   position: fixed;
@@ -50,12 +57,11 @@ const ControlPanelContainer = styled.div<IControlPanelContainer>`
 `;
 
 const ControlPanelButton = styled(VanillaButton)`
-  align-self: flex-end;
   border: solid 1px #000000;
   border-radius: 5px;
   background-color: white;
   color: #333333;
-  filter: drop-shadow(0 3px 5px #0000007a);
+  filter: drop-shadow(0 3px 10px #000000ed);
   font-size: 1em;
   padding: 7px;
   pointer-events: auto;
@@ -71,6 +77,7 @@ function App() {
           <ComponentUsedContextProvider>
             <DecimalPlaceContextProvider>
               <ControlPanelContainer isOpen={controlPanelOpen}>
+                <ControlPanel show={controlPanelOpen} />
                 <ControlPanelButton
                   onClick={() =>
                     setControlPanelOpen((prevControlPanel) => !prevControlPanel)
@@ -80,7 +87,7 @@ function App() {
                 </ControlPanelButton>
               </ControlPanelContainer>
               <Header />
-              <ControlPanel />
+              <ControlPanel show={true} />
               <MainConversion />
             </DecimalPlaceContextProvider>
           </ComponentUsedContextProvider>
