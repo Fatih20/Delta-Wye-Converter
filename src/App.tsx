@@ -20,7 +20,8 @@ const Main = styled.div`
   flex-direction: column;
   gap: 2em;
   position: relative;
-  padding-bottom: 20px;
+  margin-bottom: 75px;
+  /* border: solid 1px white; */
 `;
 
 const ClosedControlPanel = css`
