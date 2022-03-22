@@ -50,6 +50,10 @@ const ControlPanelContainer = styled.div<IControlPanelContainer>`
   right: 0;
   z-index: 20;
 
+  @media (min-width: 900px) {
+    display: none;
+  }
+
   ${({ isOpen }) =>
     isOpen
       ? OpenControlPanel
@@ -77,7 +81,10 @@ function App() {
           <ComponentUsedContextProvider>
             <DecimalPlaceContextProvider>
               <ControlPanelContainer isOpen={controlPanelOpen}>
-                <ControlPanel show={controlPanelOpen} />
+                <ControlPanel
+                  mobileControlPanelOpen={controlPanelOpen}
+                  isForMobile={true}
+                />
                 <ControlPanelButton
                   onClick={() =>
                     setControlPanelOpen((prevControlPanel) => !prevControlPanel)
@@ -87,7 +94,7 @@ function App() {
                 </ControlPanelButton>
               </ControlPanelContainer>
               <Header />
-              <ControlPanel show={true} />
+              <ControlPanel mobileControlPanelOpen={true} isForMobile={false} />
               <MainConversion />
             </DecimalPlaceContextProvider>
           </ComponentUsedContextProvider>

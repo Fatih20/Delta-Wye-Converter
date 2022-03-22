@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useState, useEffect } from "react";
 
 import {
@@ -18,15 +18,31 @@ import { VanillaButton } from "../GlobalComponent";
 
 interface IMain {
   show: boolean;
+  isForMobile: boolean;
 }
 
 interface IComponentButton {
   selected: boolean;
 }
 
+interface IMainForMobile {
+  show: boolean;
+}
+
+const MainNotForMobile = css`
+  display: none;
+  @media (min-width: 900px) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+const MainForMobile = css<IMainForMobile>`
+  display: ${({ show }) => (show ? "flex" : "none")};
+`;
+
 const Main = styled.div<IMain>`
   align-items: center;
-  display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
   gap: 10px;
   justify-content: flex-end;
@@ -42,9 +58,7 @@ const Main = styled.div<IMain>`
     -moz-appearance: textfield;
   }
 
-  @media (min-width: 900px) {
-    justify-content: center;
-  }
+  ${({ isForMobile }) => (isForMobile ? MainForMobile : MainNotForMobile)}
 `;
 
 const DecimalInput = styled.div`
@@ -105,7 +119,13 @@ const ResetButton = styled(ComponentButton)`
   width: auto;
 `;
 
-export default function ControlPanel({ show }: { show: boolean }) {
+export default function ControlPanel({
+  mobileControlPanelOpen,
+  isForMobile,
+}: {
+  mobileControlPanelOpen: boolean;
+  isForMobile: boolean;
+}) {
   const decimalPlace = useDecimalPlaceContext();
   const setDecimalPlace = useSetDecimalPlaceContext();
   const componentUsed = useComponentUsedContext();
@@ -139,8 +159,14 @@ export default function ControlPanel({ show }: { show: boolean }) {
     }
   }
 
+  function isPanelShown() {
+    if (!isForMobile) {
+      return true;
+    }
+  }
+
   return (
-    <Main show={show}>
+    <Main show={mobileControlPanelOpen} isForMobile={isForMobile}>
       <ComponentChooserContainer>
         <ComponentButton
           onClick={() => setComponentUsed("R")}
